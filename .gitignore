@@ -1,3 +1,11 @@
+# Dreamweaver
+
+_notes/
+
+# Netbeans
+
+nbproject/*
+
 # CakePHP 3
 
 /vendor/*

@@ -22,13 +22,12 @@ use Cake\Core\Configure;
  *
  */
  
-$subdomainConfig = array('');
+$subdomainConfig = array('subdomains' => NULL);
 
 if (file_exists(CONFIG . 'subdomains.php')) {
   Configure::load('subdomains');
 } else {
   Configure::write('Multidimensional/Subdomains', $subdomainConfig);
 }
-
 
 ?>

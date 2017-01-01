@@ -21,11 +21,26 @@ use Cake\Core\Configure;
 
 trait PrefixedRouteTrait
 {
-    private $prefixes = [];
+ 	
+	private function _getSubdomains() {
 	
-	//Add prefixes from Config
+		$validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
+		
+		if (!$validConfiguration) {
+			return [];			
+		}
+		
+		$subdomains = Configure::read('Multidimensional/Subdomains.subdomains');
+		
+		if (!is_array($subdomains) || count($subdomains) == 0) {
+			return [];	
+		}
+		
+		return $subdomains;
+		
+	}
 
-    private function getPrefixAndHost(array $context = []) {
+    private function _getPrefixAndHost(array $context = []) {
         if (empty($context['_host'])) {
             $request = Router::getRequest(true) ?: Request::createFromGlobals();
             $host = $request->host();
@@ -33,21 +48,21 @@ trait PrefixedRouteTrait
             $host = $context['_host'];
         }
         $parts = explode('.', $host, 2);
-        if (in_array($parts[0], $this->prefixes)) {
+        if (in_array($parts[0], $this->_getSubdomains())) {
             return $parts;
         } else {
             return [false, $host];
         }
     }
 
-    private function checkPrefix($prefix) {
+    private function _checkPrefix($prefix) {
         $routePrefix = isset($this->defaults['prefix']) ? $this->defaults['prefix'] : false;
         return $prefix === $routePrefix;
     }
 
     public function parse($url) {
-        list($prefix) = $this->getPrefixAndHost();
-        if (!$this->checkPrefix($prefix)) {
+        list($prefix) = $this->_getPrefixAndHost();
+        if (!$this->_checkPrefix($prefix)) {
             return false;
         }
         return parent::parse($url);
@@ -57,10 +72,10 @@ trait PrefixedRouteTrait
         if (!isset($url['prefix'])) {
             $url['prefix'] = false;
         }
-        if (!$this->checkPrefix($url['prefix'])) {
+        if (!$this->_checkPrefix($url['prefix'])) {
             return false;
         }
-        list($prefix, $host) = $this->getPrefixAndHost($context);
+        list($prefix, $host) = $this->_getPrefixAndHost($context);
         if ($prefix !== $url['prefix']) {
             $url['_host'] = $url['prefix'] === false ? $host : $url['prefix'] . '.' . $host;
         }
