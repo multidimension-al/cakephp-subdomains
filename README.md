@@ -11,7 +11,7 @@ Easily add sub domains to your CakePHP application using route prefixes. Based o
 
 ## Requirements
 
-* CakePHP 3+
+* CakePHP 3.3+
 * PHP 5.5.9+
 
 ## Installation
