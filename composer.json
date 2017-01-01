@@ -1,0 +1,30 @@
+{
+    "name": "multidimensional/cakephp-subdomains",
+    "description": "Easily add sub domains to your CakePHP application using route prefixes.",
+    "type": "cakephp-plugin",
+    "keywords": ["cakephp", "cakephp3", "subdomains"],
+    "homepage": "https://github.com/multidimension-al/cakephp-subdomains",
+    "license": "MIT",
+    "authors": [{
+        "name": "multidimension.al",
+        "homepage": "https://multidimension.al",
+        "role": "Developer"
+    }],
+    "require": {
+        "php": ">=5.5.9",
+        "cakephp/cakephp": "~3",
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Multidimensional\\Subdomains\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Multidimensional\\Subdomains\\Test\\": "tests"
+        }
+    }
+}
