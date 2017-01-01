@@ -15,30 +15,29 @@
  
 namespace Multidimensional\Subdomains\Routing;
 
-use Cake\Network\Request; 
+use Cake\Network\Request;
 use Cake\Routing\Router;
 use Cake\Core\Configure;
 
-trait SubdomainRouteTrait
-{
+trait SubdomainRouteTrait {
  	
-	private function _getSubdomains() {
+    private function _getSubdomains() {
 	
-		$validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
+        $validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
 		
-		if (!$validConfiguration) {
-			return [];			
-		}
+        if (!$validConfiguration) {
+            return [];			
+        }
 		
-		$subdomains = Configure::read('Multidimensional/Subdomains.subdomains');
+        $subdomains = Configure::read('Multidimensional/Subdomains.subdomains');
 		
-		if (!is_array($subdomains) || count($subdomains) == 0) {
-			return [];	
-		}
+        if (!is_array($subdomains) || count($subdomains) == 0) {
+            return [];	
+        }
 		
-		return $subdomains;
+        return $subdomains;
 		
-	}
+    }
 
     private function _getPrefixAndHost(array $context = []) {
         if (empty($context['_host'])) {
@@ -60,12 +59,12 @@ trait SubdomainRouteTrait
         return $prefix === $routePrefix;
     }
 
-    public function parse($url) {
+    public function parse($url, $method = '') {
         list($prefix) = $this->_getPrefixAndHost();
         if (!$this->_checkPrefix($prefix)) {
             return false;
         }
-        return parent::parse($url);
+        return parent::parse($url, $method);
     }
 
     public function match(array $url, array $context = []) {

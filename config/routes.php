@@ -24,12 +24,13 @@ if ($validConfiguration) {
 
 	$subdomains = Configure::read('Multidimensional/Subdomains.subdomains');
 	
-	if(is_array($subdomains)) {
+	if (is_array($subdomains)) {
 		
 		foreach ($subdomains AS $prefix) {
 			
 			Router::scope('/', ['prefix' => $prefix], function($routes) { 
 				$routes->fallbacks('DashedRoute');
+
 			});
 			
 		}

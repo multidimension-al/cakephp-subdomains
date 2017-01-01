@@ -22,7 +22,7 @@
  *  If you don't have this file, copy it to your main CakePHP config folder.
 /*/
 
-return array (
+return array(
   'Multidimensional/Subdomains' => 
     array('subdomains' =>
 		array('{SUBDOMAIN_1}', '{SUBDOMAIN_2}', ... '{SUBDOMAIN_N}')

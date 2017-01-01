@@ -17,7 +17,6 @@ namespace Multidimensional\Subdomains\Shell;
 
 use Cake\Core\Configure;
 use Cake\Console\Shell;
-use Cake\Console\Helper;
 
 class SubdomainsInstallShell extends Shell {
     
@@ -42,7 +41,7 @@ class SubdomainsInstallShell extends Shell {
 			
 		}
 	   
-        if ((($first_run) ? (strtolower($this->in('Install Subdomains Plugin?', ['y','n'])) == 'y') : (strtolower($this->in('Update Configuration?', ['y','n'])) == 'y'))) {
+        if ((($first_run) ? (strtolower($this->in('Install Subdomains Plugin?', ['y', 'n'])) == 'y') : (strtolower($this->in('Update Configuration?', ['y', 'n'])) == 'y'))) {
 			
 			do {
 				
@@ -60,7 +59,7 @@ class SubdomainsInstallShell extends Shell {
 					
 					$this->out();
 					
-					if (strtolower($this->in('Add Another Subdomain?', ['y','n'])) == 'n') {
+					if (strtolower($this->in('Add Another Subdomain?', ['y', 'n'])) == 'n') {
 						$addMore = false;
 					}
 									
@@ -81,13 +80,13 @@ class SubdomainsInstallShell extends Shell {
 							$subdomains[] = $subdomain;
 							$valid = true;
 							$this->out();
-						}else{
+						} else {
 							$valid = false;
 							$this->out();
 							$this->_io->out('<error>Invalid Subdomain.</error>');
 						}
 						
-					} while (!$valid || strtolower($this->in('Add Another Subdomain?', ['y','n'])) == 'y');
+					} while (!$valid || strtolower($this->in('Add Another Subdomain?', ['y', 'n'])) == 'y');
 					
 				}
 				
@@ -106,14 +105,14 @@ class SubdomainsInstallShell extends Shell {
 				
 				$this->out();
 							
-				while (count($subdomains) > 0 && strtolower($this->in('Delete a Subdomain?', ['y','n'])) == 'y') {
+				while (count($subdomains) > 0 && strtolower($this->in('Delete a Subdomain?', ['y', 'n'])) == 'y') {
 					
 					$this->out();
 					$deleteKey = (int) $this->in('Enter Number to Delete:', array_keys($subdomains));
 					
 					if (isset($subdomains[$deleteKey])) {
 						$this->out();
-						$this->out('Deleted: ' .  $subdomains[$deleteKey], 2);
+						$this->out('Deleted: ' . $subdomains[$deleteKey], 2);
 						unset($subdomains[$deleteKey]);	
 					}
 					
@@ -127,10 +126,10 @@ class SubdomainsInstallShell extends Shell {
 					$this->_io->out('<error>No Subdomains Configured.</error>', 2);					
 				}
 				
-			} while (count($subdomains) == 0 && strtolower($this->in('Start Over?', ['y','n'])) == 'y');
+			} while (count($subdomains) == 0 && strtolower($this->in('Start Over?', ['y', 'n'])) == 'y');
 			
 			$this->out();
-			if(count($subdomains) > 0) {
+			if (count($subdomains) > 0) {
 				$this->out('Configuration Saved!', 2);
 			} else {
 				$this->_io->out('<error>Plugin Not Currently Active.</error>', 2);	
@@ -141,7 +140,7 @@ class SubdomainsInstallShell extends Shell {
 	
 	private function _modifyArray(array $array) {
 
-		return array_combine(range(1, count($array)), array_values($array));;	
+		return array_combine(range(1, count($array)), array_values($array)); ;	
 		
 	}
 	  
