@@ -23,7 +23,7 @@
 /*/
 
 return array(
-  'Multidimensional/Subdomains' => 
+    'Multidimensional/Subdomains' => 
     array('subdomains' =>
 array('{SUBDOMAIN_1}', '{SUBDOMAIN_2}', /*...*/ '{SUBDOMAIN_N}')
 )

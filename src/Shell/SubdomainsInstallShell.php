@@ -20,7 +20,7 @@ use Cake\Console\Shell;
 
 class SubdomainsInstallShell extends Shell {
     
-public function main() {
+public function main () {
 
 $subdomains = array();
 
@@ -137,7 +137,7 @@ $this->_io->out('<error>Plugin Not Currently Active.</error>', 2);
 
 }
 
-private function _modifyArray(array $array) {
+private function _modifyArray (array $array) {
 
 return array_combine(range(1, count($array)), array_values($array)); ;
 
