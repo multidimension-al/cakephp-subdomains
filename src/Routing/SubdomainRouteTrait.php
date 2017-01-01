@@ -60,12 +60,12 @@ trait SubdomainRouteTrait
         return $prefix === $routePrefix;
     }
 
-    public function parse($url) {
+    public function parse($url, $method = '') {
         list($prefix) = $this->_getPrefixAndHost();
         if (!$this->_checkPrefix($prefix)) {
             return false;
         }
-        return parent::parse($url);
+        return parent::parse($url, $method);
     }
 
     public function match(array $url, array $context = []) {
