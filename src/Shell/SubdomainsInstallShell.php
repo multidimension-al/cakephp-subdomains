@@ -31,7 +31,7 @@ class SubdomainsInstallShell extends Shell {
     
         $first_run = Configure::check('Multidimensional/Subdomains.subdomains') ? false : true;
         
-        if ($first_run == false) {
+        if ($first_run === false) {
             
             $subdomains = Configure::consume('Multidimensional/Subdomains.subdomains');
             
@@ -49,7 +49,7 @@ class SubdomainsInstallShell extends Shell {
                 
                 $addMore = true;
                 
-                if ($first_run === false && count($subdomains) > 0) {
+                if ($first_run === false && is_array($subdomains) && count($subdomains) > 0) {
                 
                     $this->out('Current Subdomains:', 2);    
                                 
@@ -73,7 +73,6 @@ class SubdomainsInstallShell extends Shell {
                         
                     do {
                         
-                        $valid = true;
                         $this->out();
                         $subdomain = $this->in('Subdomain:');
                         if (preg_match('/^[A-Za-z0-9]{1}(?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9]{1})?$/', $subdomain, $matches)) {
