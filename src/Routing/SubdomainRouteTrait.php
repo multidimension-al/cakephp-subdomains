@@ -20,23 +20,23 @@ use Cake\Routing\Router;
 use Cake\Core\Configure;
 
 trait SubdomainRouteTrait {
- 	
+
     private function _getSubdomains() {
-	
+
         $validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
-		
+
         if (!$validConfiguration) {
-            return [];			
+            return [];
         }
-		
+
         $subdomains = Configure::read('Multidimensional/Subdomains.subdomains');
-		
+
         if (!is_array($subdomains) || count($subdomains) == 0) {
-            return [];	
+            return [];
         }
-		
+
         return $subdomains;
-		
+
     }
 
     private function _getPrefixAndHost(array $context = []) {

@@ -29,5 +29,3 @@ if (file_exists(CONFIG . 'subdomains.php')) {
 } else {
     Configure::write('Multidimensional/Subdomains', $subdomainConfig);
 }
-
-?>
