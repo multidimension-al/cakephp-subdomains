@@ -29,7 +29,7 @@ if ($validConfiguration) {
 		foreach ($subdomains AS $prefix) {
 			
 			Router::scope('/', ['prefix' => $prefix], function($routes) { 
-				$routes->fallbacks('InflectedRoute');
+				$routes->fallbacks('DashedRoute');
 			});
 			
 		}
