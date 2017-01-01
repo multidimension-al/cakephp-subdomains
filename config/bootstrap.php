@@ -25,9 +25,9 @@ use Cake\Core\Configure;
 $subdomainConfig = array('subdomains' => NULL);
 
 if (file_exists(CONFIG . 'subdomains.php')) {
-  Configure::load('subdomains');
+    Configure::load('subdomains');
 } else {
-  Configure::write('Multidimensional/Subdomains', $subdomainConfig);
+    Configure::write('Multidimensional/Subdomains', $subdomainConfig);
 }
 
 ?>
