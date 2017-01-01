@@ -39,7 +39,7 @@ trait SubdomainRouteTrait {
 
     }
 
-    private function _getPrefixAndHost(array $context = []) {
+    private function _getPrefixAndHost (array $context = []) {
         if (empty($context['_host'])) {
             $request = Router::getRequest(true) ?: Request::createFromGlobals();
             $host = $request->host();
@@ -54,12 +54,12 @@ trait SubdomainRouteTrait {
         }
     }
 
-    private function _checkPrefix($prefix) {
+    private function _checkPrefix ($prefix) {
         $routePrefix = isset($this->defaults['prefix']) ? $this->defaults['prefix'] : false;
         return $prefix === $routePrefix;
     }
 
-    public function parse($url, $method = '') {
+    public function parse ($url, $method = '') {
         list($prefix) = $this->_getPrefixAndHost();
         if (!$this->_checkPrefix($prefix)) {
             return false;
@@ -67,7 +67,7 @@ trait SubdomainRouteTrait {
         return parent::parse($url, $method);
     }
 
-    public function match(array $url, array $context = []) {
+    public function match (array $url, array $context = []) {
         if (!isset($url['prefix'])) {
             $url['prefix'] = false;
         }
