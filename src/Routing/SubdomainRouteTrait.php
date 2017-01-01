@@ -19,7 +19,7 @@ use Cake\Network\Request;
 use Cake\Routing\Router;
 use Cake\Core\Configure;
 
-trait PrefixedRouteTrait
+trait SubdomainRouteTrait
 {
  	
 	private function _getSubdomains() {

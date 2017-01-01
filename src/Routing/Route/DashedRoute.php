@@ -16,9 +16,9 @@
 namespace Multidimensional\Subdomains\Routing\Route;
 
 use Cake\Routing\Route\DashedRoute as CakeDashedRoute;
-use Multidimensional\Subdomains\Routing\PrefixedRouteTrait;
+use Multidimensional\Subdomains\Routing\SubdomainRouteTrait;
 
 class DashedRoute extends CakeDashedRoute
 {
-    use PrefixedRouteTrait;
+    use SubdomainRouteTrait;
 }

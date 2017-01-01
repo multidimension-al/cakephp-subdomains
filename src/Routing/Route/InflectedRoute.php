@@ -16,9 +16,9 @@
 namespace Multidimensional\Subdomains\Routing\Route;
 
 use Cake\Routing\Route\InflectedRoute as CakeInflectedRoute;
-use Multidimensional\Subdomains\Routing\PrefixedRouteTrait;
+use Multidimensional\Subdomains\Routing\SubdomainRouteTrait;
 
 class InflectedRoute extends CakeInflectedRoute
 {
-    use PrefixedRouteTrait;
+    use SubdomainRouteTrait;
 }
