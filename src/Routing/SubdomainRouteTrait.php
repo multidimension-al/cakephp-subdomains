@@ -23,34 +23,34 @@ trait SubdomainRouteTrait {
 
     private function _getSubdomains() {
         
-		$validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
+        $validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
         
-		if (!$validConfiguration) {
+        if (!$validConfiguration) {
             return [];
         }
         
-		$subdomains = Configure::read('Multidimensional/Subdomains.subdomains');
+        $subdomains = Configure::read('Multidimensional/Subdomains.subdomains');
         
-		if (!is_array($subdomains) || count($subdomains) == 0) {
+        if (!is_array($subdomains) || count($subdomains) == 0) {
             return [];
         }
         
-		return $subdomains;
+        return $subdomains;
 		
     }
 
     private function _getPrefixAndHost (array $context = []) {
         
-		if (empty($context['_host'])) {
+        if (empty($context['_host'])) {
             $request = Router::getRequest(true) ?: Request::createFromGlobals();
             $host = $request->host();
         } else {
             $host = $context['_host'];
         }
         
-		$parts = explode('.', $host, 2);
+        $parts = explode('.', $host, 2);
         
-		if (in_array($parts[0], $this->_getSubdomains())) {
+        if (in_array($parts[0], $this->_getSubdomains())) {
             return $parts;
         } else {
             return [false, $host];
@@ -67,7 +67,7 @@ trait SubdomainRouteTrait {
 
     public function parse ($url, $method = '') {
 		
-		debug("HELLO?");
+        debug("HELLO?");
 
         list($prefix) = $this->_getPrefixAndHost();
 

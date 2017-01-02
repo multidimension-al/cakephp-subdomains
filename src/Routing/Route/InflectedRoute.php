@@ -20,6 +20,6 @@ use Multidimensional\Subdomains\Routing\SubdomainRouteTrait;
 
 class InflectedRoute extends CakeInflectedRoute {
     
-	use SubdomainRouteTrait;
+    use SubdomainRouteTrait;
 	
 }
