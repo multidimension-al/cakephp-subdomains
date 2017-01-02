@@ -20,7 +20,7 @@ use Cake\Console\Shell;
 
 class SubdomainsInstallShell extends Shell {
     
-    public function main() {
+    public function main () {
     
         $subdomains = array();    
     
@@ -136,7 +136,7 @@ class SubdomainsInstallShell extends Shell {
     
     }
     
-    private function _modifyArray(array $array) {
+    private function _modifyArray (array $array) {
 
         return array_combine(range(1, count($array)), array_values($array)); ;    
         
