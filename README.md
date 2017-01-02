@@ -74,6 +74,12 @@ $this->Html->link(['prefix'=>false, 'controller'=>'Articles', 'action'=>'index']
 $this->Html->link(['prefix'=>'admin', 'controller'=>'Articles', 'action'=>'index']);
 ```
 
+## Contributing
+
+Please help our project by creating a fork, and sending a pull request.
+
+We need help writing unit tests, implementing Travis-CI and generally improving the functionality of the code.
+
 ## License
 
     The MIT License (MIT)
