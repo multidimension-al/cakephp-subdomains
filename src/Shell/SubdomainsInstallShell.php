@@ -166,7 +166,7 @@ class SubdomainsInstallShell extends Shell {
     /**
      * @param integer $key
      */
-    private function _deleteSubdomain (&$subdomains, $key) {
+    private function _deleteSubdomain(&$subdomains, $key) {
         
         if (isset($subdomains[$key])) {
             
@@ -185,7 +185,7 @@ class SubdomainsInstallShell extends Shell {
     /**
      * @param string|null $subdomain
      */    
-    private function _validateSubdomain ($subdomain) {
+    private function _validateSubdomain($subdomain) {
     
         if (is_null($subdomain) || empty($subdomain)) {
             return false;
@@ -203,9 +203,17 @@ class SubdomainsInstallShell extends Shell {
     
     private function _countSubdomains($subdomains) {
         
-        if (!is_array($subdomains) || is_null($subdomains)) {
+        if (!is_array($subdomains)) {
             return false;                                
         }
+		
+		if (is_null($subdomains)) {
+			return false;	
+		}
+		
+		if (count($subdomains) === 0) {
+			return false;
+		}
         
         return (int) count($subdomains);        
         
