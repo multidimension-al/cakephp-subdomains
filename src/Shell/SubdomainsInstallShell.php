@@ -49,11 +49,8 @@ class SubdomainsInstallShell extends Shell {
                 if ($first_run === false && $this->_countSubdomains($subdomains)) {
                 
                     $subdomains = array_values(array_unique($subdomains));
-                    
                     $subdomains = $this->_modifyArray($subdomains);
-                    
                     $this->_currentSubdomains($subdomains);
-                    
                     $addMore = $this->_askAddSubdomain();
                                     
                 }
@@ -94,7 +91,6 @@ class SubdomainsInstallShell extends Shell {
                     
                     $this->out();
                     $deleteKey = (int) $this->in('Enter Number to Delete:', array_keys($subdomains));
-                    
                     $this->_deleteSubdomain($subdomains, $deleteKey);
                     
                 }
