@@ -19,7 +19,7 @@ use Cake\Console\Helper;
 
 class HeaderHelper extends Helper {
 	
-    public function output ($args = null) {
+    public function output($args = null) {
         $this->_io->out("\n\n");
         $this->_io->styles('header', ['text' => 'green']);
 

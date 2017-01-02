@@ -32,7 +32,7 @@ if ($validConfiguration) {
 		
         foreach ($subdomains AS $prefix) {
 			
-            Router::scope('/', ['prefix' => $prefix], function ($routes) {
+            Router::scope('/', ['prefix' => $prefix], function($routes) {
                 $routes->fallbacks(DashedRoute::class);
             });
 			
