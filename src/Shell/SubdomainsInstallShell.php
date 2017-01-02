@@ -44,47 +44,43 @@ class SubdomainsInstallShell extends Shell {
             
             do {
                 
-                $this->out();
-                
                 $addMore = true;
                 
-                if ($first_run === false && is_array($subdomains) && count($subdomains) > 0) {
+                if ($first_run === false && $this->_countSubdomains($subdomains)) {
                 
-                    $this->out('Current Subdomains:', 2);    
-                                
-                    foreach ($subdomains AS $prefix) {
-                        $this->out(' - ' . $prefix);    
-                    }
+					$subdomains = array_values(array_unique($subdomains));
+					
+					$subdomains = $this->_modifyArray($subdomains);
+					
+					$this->_currentSubdomains($subdomains);
                     
-                    $this->out();
-                    
-                    if (strtolower($this->in('Add Another Subdomain?', ['y', 'n'])) == 'n') {
-                        $addMore = false;
-                    }
+                    $addMore = $this->_askAddSubdomain();
                                     
                 }
                 
                 if ($addMore) {
                         
-                    if (count($subdomains) == 0) {
+                    if (!$this->_countSubdomains($subdomains)) {
+						$this->out();
                         $this->out('Add Your First Subdomain.');
                     }
                         
                     do {
                         
                         $this->out();
+						
                         $subdomain = $this->in('Subdomain:');
-                        if (preg_match('/^[A-Za-z0-9]{1}(?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9]{1})?$/', $subdomain, $matches)) {
+						$valid = $this->_validateSubdomain($subdomain);
+
+                        $this->out();
+						
+                        if ($valid) {
                             $subdomains[] = $subdomain;
-                            $valid = true;
-                            $this->out();
                         } else {
-                            $valid = false;
-                            $this->out();
                             $this->err('Invalid Subdomain.');
                         }
                         
-                    } while (!$valid || strtolower($this->in('Add Another Subdomain?', ['y', 'n'])) == 'y');
+                    } while (!$valid || $this->_askAddSubdomain());
                     
                 }
                 
@@ -92,42 +88,29 @@ class SubdomainsInstallShell extends Shell {
                 
                 $subdomains = $this->_modifyArray($subdomains);
                 
-                $this->out();
-                $this->out('Current Subdomains:', 2);
-                
-                if (count($subdomains) > 0) {
-                    foreach ($subdomains AS $key => $value) {
-                        $this->out(' ' . ($key) . '. ' . $value);    
-                    }                
-                }
-                
-                $this->out();
+				$this->_currentSubdomains($subdomains);
                             
-                while (count($subdomains) > 0 && strtolower($this->in('Delete a Subdomain?', ['y', 'n'])) == 'y') {
+                while ($this->_countSubdomains($subdomains) && $this->_askDeleteSubdomain()) {
                     
                     $this->out();
                     $deleteKey = (int) $this->in('Enter Number to Delete:', array_keys($subdomains));
                     
-                    if (isset($subdomains[$deleteKey])) {
-                        $this->out();
-                        $this->out('Deleted: ' . $subdomains[$deleteKey], 2);
-                        unset($subdomains[$deleteKey]);    
-                    }
+					$this->_deleteSubdomain($subdomains, $deleteKey);
                     
                 }
                 
                 Configure::write('Multidimensional/Subdomains.subdomains', array_values($subdomains));
                 Configure::dump('subdomains', 'default', ['Multidimensional/Subdomains']);
                 
-                if (count($subdomains) == 0) {
+                if (!$this->_countSubdomains($subdomains)) {
                     $this->out();
                     $this->err('No Subdomains Configured.', 2);                    
                 }
                 
-            } while (count($subdomains) == 0 && strtolower($this->in('Start Over?', ['y', 'n'])) == 'y');
+            } while (count($subdomains) == 0 && $this->_askStartOver());
             
             $this->out();
-            if (count($subdomains) > 0) {
+            if ($this->_countSubdomains($subdomains)) {
                 $this->out('Configuration Saved!', 2);
             } else {
                 $this->err('Plugin Not Currently Active.', 2);    
@@ -141,6 +124,70 @@ class SubdomainsInstallShell extends Shell {
         return array_combine(range(1, count($array)), array_values($array)); ;    
         
     }
-      
+    
+	
+	private function _currentSubdomains (array $subdomains) {
+		
+		if ($this->_countSubdomains($subdomains)) {
+			
+			$this->out();
+			$this->out('Current Subdomains:', 2);
+				
+			foreach ($subdomains AS $key => $value) {
+				$this->out(' ' . ($key) . '. ' . $value);    
+			}                
+			
+			$this->out();
+		
+		}
+		
+	}
+	
+	private function _askAddSubdomain () {
+	
+		return (strtolower($this->in('Add Subdomain?', ['y', 'n'])) === 'y');
+		
+	}
+	
+	private function _askDeleteSubdomain () {
+	
+		return (strtolower($this->in('Delete Subdomain?', ['y', 'n'])) === 'y');
+		
+	}
+	
+	private function _deleteSubdomain (&$subdomains, $key) {
+		
+		if (isset($subdomains[$key])) {
+			$this->out();
+			$this->out('Deleted: ' . $subdomains[$key], 2);
+			unset($subdomains[$key]);
+			return true; 
+		}
+		
+		return false;
+		
+	}
+	
+	private function _validateSubdomain ($subdomain) {
+	
+		return preg_match('/^[A-Za-z0-9]{1}(?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9]{1})?$/', $subdomain);
+		
+	}
+	
+	private function _askStartOver () {
+		
+		return (strtolower($this->in('Start Over?', ['y', 'n'])) === 'y');
+		
+	}
+	
+	private function _countSubdomains ($subdomains) {
+		
+		if (!is_array($subdomains)) {
+			return false;								
+		}
+		
+		return count($subdomains);		
+		
+	}
       
 }
