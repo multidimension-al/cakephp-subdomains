@@ -180,7 +180,7 @@ class SubdomainsInstallShell extends Shell {
     private function _validateSubdomain ($subdomain) {
     
         if (is_null($subdomain) || empty($subdomain)) {
-            return false    
+            return false;
         }
     
         return preg_match('/^[A-Za-z0-9]{1}(?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9]{1})?$/', $subdomain);
