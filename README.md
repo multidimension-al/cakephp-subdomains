@@ -1,6 +1,5 @@
 # CakePHP Subdomain Routing
 
-[![Build Status](https://api.travis-ci.org/multidimension-al/cakephp-subdomains.svg?branch=master)](https://travis-ci.org/multidimension-al/cakephp-subdomains)
 [![Latest Stable Version](https://poser.pugx.org/multidimensional/cakephp-subdomains/v/stable.svg)](https://packagist.org/packages/multidimensional/cakephp-subdomains)
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%205.5-8892BF.svg)](https://php.net/)
 [![License](https://poser.pugx.org/multidimensional/cakephp-subdomains/license.svg)](https://packagist.org/packages/multidimensional/cakephp-subdomains)
