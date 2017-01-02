@@ -12,7 +12,7 @@
  * @link          https://github.com/multidimension-al/cakephp-subdomains Github
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-    
+
 namespace Multidimensional\Subdomains\Shell;
 
 use Cake\Core\Configure;
@@ -34,13 +34,13 @@ class SubdomainsInstallShell extends Shell {
             
             $subdomains = Configure::consume('Multidimensional/Subdomains.subdomains');
             
-            if (count($subdomains) == 0) {
+            if (!$this->_countSubdomains($subdomains)) {
                 $first_run = true;
             }
             
         }
        
-        if ((($first_run) ? (strtolower($this->in('Install Subdomains Plugin?', ['y', 'n'])) == 'y') : (strtolower($this->in('Update Configuration?', ['y', 'n'])) == 'y'))) {
+        if ($first_run ? $this->_askInstall() : $this->_askUpdate()) {
             
             do {
                 
@@ -107,7 +107,7 @@ class SubdomainsInstallShell extends Shell {
                     $this->err('No Subdomains Configured.', 2);                    
                 }
                 
-            } while (count($subdomains) == 0 && $this->_askStartOver());
+            } while (!$this->_countSubdomains($subdomains) && $this->_askStartOver());
             
             $this->out();
             if ($this->_countSubdomains($subdomains)) {
@@ -143,6 +143,18 @@ class SubdomainsInstallShell extends Shell {
         
     }
     
+    private function _askInstall() {
+        
+        return (strtolower($this->in('Install Subdomains Plugin?', ['y', 'n'])) === 'y');
+        
+    }
+    
+    private function _askUpdate() {
+            
+        return (strtolower($this->in('Update Configuration?', ['y', 'n'])) === 'y');
+            
+    }
+
     private function _askAddSubdomain() {
     
         return (strtolower($this->in('Add Subdomain?', ['y', 'n'])) === 'y');

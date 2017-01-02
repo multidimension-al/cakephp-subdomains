@@ -36,7 +36,7 @@ trait SubdomainRouteTrait {
         }
         
         return $subdomains;
-		
+        
     }
 
     private function _getPrefixAndHost(array $context = []) {
@@ -55,7 +55,7 @@ trait SubdomainRouteTrait {
         } else {
             return [false, $host];
         }
-		
+        
     }
 
     private function _checkPrefix($prefix) {
@@ -66,7 +66,7 @@ trait SubdomainRouteTrait {
     }
 
     public function parse($url, $method = '') {
-		
+        
         debug("HELLO?");
 
         list($prefix) = $this->_getPrefixAndHost();

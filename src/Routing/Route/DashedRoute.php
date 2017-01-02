@@ -21,5 +21,5 @@ use Multidimensional\Subdomains\Routing\SubdomainRouteTrait;
 class DashedRoute extends CakeDashedRoute {
     
     use SubdomainRouteTrait;
-	
+    
 }
