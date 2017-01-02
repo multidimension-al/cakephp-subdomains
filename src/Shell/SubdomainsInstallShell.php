@@ -207,13 +207,13 @@ class SubdomainsInstallShell extends Shell {
             return false;                                
         }
 		
-		if (is_null($subdomains)) {
-			return false;	
-		}
+        if (is_null($subdomains)) {
+            return false;	
+        }
 		
-		if (count($subdomains) === 0) {
-			return false;
-		}
+        if (count($subdomains) === 0) {
+            return false;
+        }
         
         return (int) count($subdomains);        
         
