@@ -47,6 +47,33 @@ Run the installation script command in termainl:
 bin/cake SubdomainsInstall
 ```
 
+This command will allow you to automatically create a configuration file with the list of your subdomains for the plugin to use. You can also run this command to add or delete additional subdomains.
+
+Alternatively, you can create a `config/subdomains.php` file in your main CakePHP config folder:
+
+```php
+return array(
+    'Multidimensional/Subdomains' => 
+        array('subdomains' =>
+			array('{SUBDOMAIN_1}', '{SUBDOMAIN_2}', /*...*/ '{SUBDOMAIN_N}')
+		)
+	);
+```
+
+## Usage
+
+The plugin will automatically add the subdomains you specify as CakePHP prefixes. 
+
+When generating links, include the subdomain prefix you want to use and the Router will automatically create the link using the subdomain URL.
+
+```php
+//Link to http://example.com/articles/
+$this->Html->link(['prefix'=>false, 'controller'=>'Articles', 'action'=>'index']);
+
+//Link to http://admin.example.com/articles/
+$this->Html->link(['prefix'=>'admin', 'controller'=>'Articles', 'action'=>'index']);
+```
+
 ## License
 
     The MIT License (MIT)

@@ -21,7 +21,7 @@ use Cake\Core\Configure;
 
 trait SubdomainRouteTrait {
 
-    private function _getSubdomains() {
+    private function _getSubdomains () {
         
         $validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
         
