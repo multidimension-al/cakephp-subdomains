@@ -2,10 +2,10 @@
 
 [![Build Status](https://api.travis-ci.org/multidimension-al/cakephp-subdomains.svg?branch=master)](https://travis-ci.org/multidimension-al/cakephp-subdomains)
 [![Latest Stable Version](https://poser.pugx.org/multidimensional/cakephp-subdomains/v/stable.svg)](https://packagist.org/packages/multidimensional/cakephp-subdomains)
-[![Coverage Status](https://coveralls.io/repos/github/multidimension-al/cakephp-subdomains/badge.svg?branch=master)](https://coveralls.io/github/multidimension-al/cakephp-subdomains?branch=master)
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%205.5-8892BF.svg)](https://php.net/)
 [![License](https://poser.pugx.org/multidimensional/cakephp-subdomains/license.svg)](https://packagist.org/packages/multidimensional/cakephp-subdomains)
 [![Total Downloads](https://poser.pugx.org/multidimensional/cakephp-subdomains/d/total.svg)](https://packagist.org/packages/multidimensional/cakephp-subdomains)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/multidimension-al/cakephp-subdomains/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/multidimension-al/cakephp-subdomains/?branch=master)
 
 Easily add sub domains to your CakePHP application using route prefixes. Based on [code](https://github.com/cakephp/cakephp/issues/7140) created by [chinpei215](https://github.com/chinpei215).
 
