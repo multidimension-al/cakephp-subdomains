@@ -20,7 +20,7 @@ use Cake\Console\Shell;
 
 class SubdomainsInstallShell extends Shell {
     
-    public function main () {
+    public function main() {
     
         $subdomains = array();    
     
@@ -119,14 +119,14 @@ class SubdomainsInstallShell extends Shell {
     
     }
     
-    private function _modifyArray (array $array) {
+    private function _modifyArray(array $array) {
 
         return array_combine(range(1, count($array)), array_values($array)); ;    
         
     }
     
     
-    private function _currentSubdomains (array $subdomains) {
+    private function _currentSubdomains(array $subdomains) {
         
         if ($this->_countSubdomains($subdomains)) {
             
@@ -143,21 +143,21 @@ class SubdomainsInstallShell extends Shell {
         
     }
     
-    private function _askAddSubdomain () {
+    private function _askAddSubdomain() {
     
         return (strtolower($this->in('Add Subdomain?', ['y', 'n'])) === 'y');
         
     }
     
-    private function _askDeleteSubdomain () {
+    private function _askDeleteSubdomain() {
     
         return (strtolower($this->in('Delete Subdomain?', ['y', 'n'])) === 'y');
         
     }
     
     /**
-    * @param integer $key
-    */
+     * @param integer $key
+     */
     private function _deleteSubdomain (&$subdomains, $key) {
         
         if (isset($subdomains[$key])) {
@@ -175,8 +175,8 @@ class SubdomainsInstallShell extends Shell {
     }
     
     /**
-    * @param string|null $subdomain
-    */    
+     * @param string|null $subdomain
+     */    
     private function _validateSubdomain ($subdomain) {
     
         if (is_null($subdomain) || empty($subdomain)) {
@@ -187,13 +187,13 @@ class SubdomainsInstallShell extends Shell {
         
     }
     
-    private function _askStartOver () {
+    private function _askStartOver() {
         
         return (strtolower($this->in('Start Over?', ['y', 'n'])) === 'y');
         
     }
     
-    private function _countSubdomains ($subdomains) {
+    private function _countSubdomains($subdomains) {
         
         if (!is_array($subdomains) || is_null($subdomains)) {
             return false;                                

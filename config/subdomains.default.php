@@ -25,6 +25,6 @@
 return array(
     'Multidimensional/Subdomains' => 
         array('subdomains' =>
-			array('{SUBDOMAIN_1}', '{SUBDOMAIN_2}', /*...*/ '{SUBDOMAIN_N}')
-		)
-	);
+            array('{SUBDOMAIN_1}', '{SUBDOMAIN_2}', /*...*/ '{SUBDOMAIN_N}')
+        )
+    );

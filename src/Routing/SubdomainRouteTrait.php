@@ -21,7 +21,7 @@ use Cake\Core\Configure;
 
 trait SubdomainRouteTrait {
 
-    private function _getSubdomains () {
+    private function _getSubdomains() {
         
         $validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
         
@@ -39,7 +39,7 @@ trait SubdomainRouteTrait {
 		
     }
 
-    private function _getPrefixAndHost (array $context = []) {
+    private function _getPrefixAndHost(array $context = []) {
         
         if (empty($context['_host'])) {
             $request = Router::getRequest(true) ?: Request::createFromGlobals();
@@ -58,14 +58,14 @@ trait SubdomainRouteTrait {
 		
     }
 
-    private function _checkPrefix ($prefix) {
+    private function _checkPrefix($prefix) {
 
         $routePrefix = isset($this->defaults['prefix']) ? $this->defaults['prefix'] : false;
         return $prefix === $routePrefix;
 
     }
 
-    public function parse ($url, $method = '') {
+    public function parse($url, $method = '') {
 		
         debug("HELLO?");
 
@@ -79,7 +79,7 @@ trait SubdomainRouteTrait {
 
     }
 
-    public function match (array $url, array $context = []) {
+    public function match(array $url, array $context = []) {
 
         if (!isset($url['prefix'])) {
             $url['prefix'] = false;
