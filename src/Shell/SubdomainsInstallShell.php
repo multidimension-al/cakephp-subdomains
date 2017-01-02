@@ -26,7 +26,6 @@ class SubdomainsInstallShell extends Shell {
     
         $this->clear();
         
-        $this->_io->styles('error', ['text' => 'red']);
         $this->helper('Multidimensional/Subdomains.Header')->output();
     
         $first_run = Configure::check('Multidimensional/Subdomains.subdomains') ? false : true;
@@ -82,7 +81,7 @@ class SubdomainsInstallShell extends Shell {
                         } else {
                             $valid = false;
                             $this->out();
-                            $this->_io->out('<error>Invalid Subdomain.</error>');
+                            $this->err('Invalid Subdomain.');
                         }
                         
                     } while (!$valid || strtolower($this->in('Add Another Subdomain?', ['y', 'n'])) == 'y');
@@ -122,7 +121,7 @@ class SubdomainsInstallShell extends Shell {
                 
                 if (count($subdomains) == 0) {
                     $this->out();
-                    $this->_io->out('<error>No Subdomains Configured.</error>', 2);                    
+                    $this->err('No Subdomains Configured.', 2);                    
                 }
                 
             } while (count($subdomains) == 0 && strtolower($this->in('Start Over?', ['y', 'n'])) == 'y');
@@ -131,7 +130,7 @@ class SubdomainsInstallShell extends Shell {
             if (count($subdomains) > 0) {
                 $this->out('Configuration Saved!', 2);
             } else {
-                $this->_io->out('<error>Plugin Not Currently Active.</error>', 2);    
+                $this->err('Plugin Not Currently Active.', 2);    
             }
         }
     

@@ -19,5 +19,7 @@ use Cake\Routing\Route\DashedRoute as CakeDashedRoute;
 use Multidimensional\Subdomains\Routing\SubdomainRouteTrait;
 
 class DashedRoute extends CakeDashedRoute {
-    use SubdomainRouteTrait;
+    
+	use SubdomainRouteTrait;
+	
 }

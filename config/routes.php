@@ -15,8 +15,12 @@
 
 namespace Multidimensional\Subdomains\Config;
 
-use Cake\Routing\Router;
+use Multidimensional\Subdomains\Routing\Route\Route;
+use Multidimensional\Subdomains\Routing\Route\InflectedRoute;
+use Multidimensional\Subdomains\Routing\Route\DashedRoute;
+
 use Cake\Core\Configure;
+use Cake\Routing\Router;
 
 $validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
 
@@ -29,7 +33,7 @@ if ($validConfiguration) {
         foreach ($subdomains AS $prefix) {
 			
             Router::scope('/', ['prefix' => $prefix], function($routes) { 
-                $routes->fallbacks('DashedRoute');
+                $routes->fallbacks(DashedRoute::class);
 
             });
 			
@@ -38,3 +42,5 @@ if ($validConfiguration) {
     }
 	
 }
+
+var_export(Router::routes());

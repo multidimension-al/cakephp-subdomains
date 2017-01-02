@@ -19,5 +19,7 @@ use Cake\Routing\Route\Route as CakeRoute;
 use Multidimensional\Subdomains\Routing\SubdomainRouteTrait;
 
 class Route extends CakeRoute {
-    use SubdomainRouteTrait;
+    
+	use SubdomainRouteTrait;
+	
 }
