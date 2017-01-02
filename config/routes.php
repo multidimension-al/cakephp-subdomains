@@ -41,5 +41,3 @@ if ($validConfiguration) {
     }
     
 }
-
-var_export(Router::routes());
