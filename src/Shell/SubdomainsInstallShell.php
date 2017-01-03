@@ -113,7 +113,7 @@ class SubdomainsInstallShell extends Shell {
         
         $subdomains = Configure::consume('Multidimensional/Subdomains.subdomains');
         
-        if ($this->_countSubdomains($subdomains)) { 
+        if ($this->_countSubdomains($subdomains)) {
             return $subdomains;
         }
         
