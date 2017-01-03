@@ -103,24 +103,24 @@ class SubdomainsInstallShell extends Shell {
     
     }
     
-	private function _getSubdomains() {
-	
-	    $check = Configure::check('Multidimensional/Subdomains.subdomains');
-		
-		if (!$check) {
-			return false;	
-		}
-		
-		$subdomains = Configure::consume('Multidimensional/Subdomains.subdomains');
-		
-		if ($this->_countSubdomains($subdomains)) { 
-			return $subdomains;
-		}
-		
+    private function _getSubdomains() {
+    
+        $check = Configure::check('Multidimensional/Subdomains.subdomains');
+        
+        if (!$check) {
+            return false;    
+        }
+        
+        $subdomains = Configure::consume('Multidimensional/Subdomains.subdomains');
+        
+        if ($this->_countSubdomains($subdomains)) { 
+            return $subdomains;
+        }
+        
         return false;
-		
-	}
-	
+        
+    }
+    
     private function _modifyArray(array $array) {
 
         return array_combine(range(1, count($array)), array_values($array)); ;    
@@ -212,11 +212,11 @@ class SubdomainsInstallShell extends Shell {
         if (!is_array($subdomains)) {
             return false;                                
         }
-		
+        
         if (is_null($subdomains)) {
-            return false;	
+            return false;    
         }
-		
+        
         if (count($subdomains) === 0) {
             return false;
         }

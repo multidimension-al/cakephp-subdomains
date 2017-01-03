@@ -48,19 +48,19 @@ trait SubdomainRouteTrait {
             $host = $context['_host'];
         }
 
-		if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $parts)) {
-						
-			if (in_array($parts[1], $this->_getSubdomains())) {
-				return [$parts[1], $parts[2]];
-			} else {
-				return [false, $parts[2]];
-			}
-			
-		} else {
+        if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $parts)) {
+                        
+            if (in_array($parts[1], $this->_getSubdomains())) {
+                return [$parts[1], $parts[2]];
+            } else {
+                return [false, $parts[2]];
+            }
+            
+        } else {
             return [false, $host];
         }
-		
-		
+        
+        
         
     }
 
@@ -99,7 +99,7 @@ trait SubdomainRouteTrait {
         if ($prefix !== $url['prefix']) {
             $url['_host'] = $url['prefix'] === false ? $host : $url['prefix'] . '.' . $host;
         }
-		
+        
         return parent::match($url, $context);
 
     }
