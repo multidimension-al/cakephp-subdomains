@@ -170,7 +170,7 @@ class SubdomainsInstallShell extends Shell {
         
     }
     
-	/**
+    /**
     * @param string $string
     */     
     private function _inputYesNo($string) {
@@ -182,7 +182,7 @@ class SubdomainsInstallShell extends Shell {
     private function _deleteSubdomain(&$subdomains) {
         
         $this->_displayCurrentUniqueSubdomains($subdomains);
-		
+        
         while ($this->_countSubdomains($subdomains) && $this->_inputYesNo('Delete a subdomain?')) {
 
             $this->out();
@@ -213,17 +213,11 @@ class SubdomainsInstallShell extends Shell {
     
     private function _countSubdomains($subdomains) {
        
-        if (!isset($subdomains)
-			|| empty($subdomains)
-			|| is_null($subdomains)
-		    || !is_array($subdomains)
-			|| count($subdomains) === 0) {
-				
-            return false;
-			
+        if (!isset($subdomains) || !is_array($subdomains)) {
+            return 0;
         }
         
-        return (int) count($subdomains);
+        return count($subdomains);
         
     }
       
