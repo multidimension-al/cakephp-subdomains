@@ -55,11 +55,8 @@ class SubdomainsInstallShell extends Shell {
                     $this->_inputSubdomain($subdomains);
                 
                 }
-                
-                $this->_displayCurrentUniqueSubdomains($subdomains);
                             
                 $this->_deleteSubdomain($subdomains);
-                
                 $this->_writeConfig($subdomains);
                 $this->_finalCheck($subdomains);
                 
@@ -172,7 +169,10 @@ class SubdomainsInstallShell extends Shell {
         }
         
     }
-                
+    
+	/**
+    * @param string $string
+    */     
     private function _inputYesNo($string) {
     
         return strtolower($this->in($string, ['y', 'n'])) === 'y';    
@@ -181,6 +181,8 @@ class SubdomainsInstallShell extends Shell {
 
     private function _deleteSubdomain(&$subdomains) {
         
+        $this->_displayCurrentUniqueSubdomains($subdomains);
+		
         while ($this->_countSubdomains($subdomains) && $this->_inputYesNo('Delete a subdomain?')) {
 
             $this->out();
@@ -208,22 +210,20 @@ class SubdomainsInstallShell extends Shell {
         return preg_match('/^[A-Za-z0-9]{1}(?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9]{1})?$/', $subdomain);
         
     }
-        
+    
     private function _countSubdomains($subdomains) {
-        
-        if (!is_array($subdomains)) {
-            return false;                                
-        }
-        
-        if (is_null($subdomains)) {
-            return false;    
-        }
-        
-        if (count($subdomains) === 0) {
+       
+        if (!isset($subdomains)
+			|| empty($subdomains)
+			|| is_null($subdomains)
+		    || !is_array($subdomains)
+			|| count($subdomains) === 0) {
+				
             return false;
+			
         }
         
-        return (int) count($subdomains);        
+        return (int) count($subdomains);
         
     }
       
