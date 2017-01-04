@@ -171,8 +171,8 @@ class SubdomainsInstallShell extends Shell {
     }
     
     /**
-    * @param string $string
-    */     
+     * @param string $string
+     */     
     private function _inputYesNo($string) {
     
         return strtolower($this->in($string, ['y', 'n'])) === 'y';    
