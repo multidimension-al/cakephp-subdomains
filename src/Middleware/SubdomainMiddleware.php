@@ -15,8 +15,10 @@
 
 namespace Multidimensional\Subdomains\Middleware;
 
+use Cake\Core\Configure;
+
 class SubdomainMiddleware {
-	
+		
 	/**
 	 * @param \Psr\Http\Message\ServerRequestInterface $request The request.
 	 * @param \Psr\Http\Message\ResponseInterface $response The response.
@@ -25,10 +27,47 @@ class SubdomainMiddleware {
 	 */
 	public function __invoke($request, $response, $next) {
 		
-		$response = $next($request, $response);
+		$subdomains = $this->_getSubdomains();
 		
-		return $response;
+		$uri = $request->getUri();
+		$host = $uri->getHost();
+		
+		if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $parts)) {
+			
+			if (in_array($parts[1], $subdomains)) {
+			
+				$params = (array) $request->getAttribute('params', []);
+				
+				if (empty($params['prefix'])) {
+					$params['prefix'] = $parts[1];			
+				}
+				
+				$request = $request->withAttribute('params', $params);
+			
+			}
+		
+		}
+		
+		return $next($request, $response);
 		
 	}	
+	
+	private function _getSubdomains() {
+        
+        $validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
+        
+        if (!$validConfiguration) {
+            return [];
+        }
+        
+        $subdomains = Configure::read('Multidimensional/Subdomains.subdomains');
+        
+        if (!is_array($subdomains) || count($subdomains) == 0) {
+            return [];
+        }
+        
+        return $subdomains;
+        
+    }
 	
 }
