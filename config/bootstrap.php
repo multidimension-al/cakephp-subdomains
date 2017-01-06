@@ -12,8 +12,12 @@
  * @link          https://github.com/multidimension-al/cakephp-subdomains Github
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+ 
+namespace Multidimensional\Subdomains\Config;
 
 use Cake\Core\Configure;
+use Cake\Event\EventManager;
+use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 
 /*
  *
@@ -29,3 +33,14 @@ if (file_exists(CONFIG . 'subdomains.php')) {
 } else {
     Configure::write('Multidimensional/Subdomains', $subdomainConfig);
 }
+
+/*
+ *  Middleware
+ */
+ 
+EventManager::instance()->on(
+    'Server.buildMiddleware',
+    function ($event, $middleware) {
+        $middleware->add(new SubdomainMiddleware());
+    }
+);
