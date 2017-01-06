@@ -23,10 +23,10 @@ use Cake\Routing\Router;
 $subdomainsObject = new SubdomainMiddleware();
 $subdomains = $subdomainsObject->getSubdomains();
 
-if (is_array($subdomains)) {   
-	foreach ($subdomains AS $prefix) {
-		Router::scope('/', ['prefix' => $prefix], function($routes) {
-			$routes->fallbacks('Multidimensional/Subdomains.SubdomainRoute');
-		});
-	}
+if (is_array($subdomains)) {
+    foreach ($subdomains AS $prefix) {
+        Router::scope('/', ['prefix' => $prefix], function($routes) {
+            $routes->fallbacks('Multidimensional/Subdomains.SubdomainRoute');
+        });
+    }
 }

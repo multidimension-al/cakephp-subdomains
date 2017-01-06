@@ -23,7 +23,7 @@ use Cake\Routing\Route\Route;
 use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 
 class SubdomainRoute extends Route {
-    	
+        
     public function parse($url, $method = '') {
 
         list($prefix) = $this->_getPrefixAndHost();
@@ -41,7 +41,7 @@ class SubdomainRoute extends Route {
         if (!isset($url['prefix'])) {
             $url['prefix'] = false;
         }
-		
+        
         if (!$this->_checkPrefix($url['prefix'])) {
             return false;
         }
@@ -66,7 +66,7 @@ class SubdomainRoute extends Route {
             $host = $context['_host'];
         }
 
-		return $this->_subdomainCheck($host);
+        return $this->_subdomainCheck($host);
         
     }
 
@@ -77,17 +77,17 @@ class SubdomainRoute extends Route {
         return $prefix === $routePrefix;
 
     }
-	
+    
     private function _getSubdomains() {
         
         $subdomains = new SubdomainMiddleware();
         return $subdomains->getSubdomains();
         
     }
-	
-	private function _subdomainCheck($host) {
-		
-		if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $parts)) {
+    
+    private function _subdomainCheck($host) {
+        
+        if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $parts)) {
                         
             if (in_array($parts[1], $this->_getSubdomains())) {
                 return [$parts[1], $parts[2]];
@@ -97,8 +97,8 @@ class SubdomainRoute extends Route {
             
         } else {
             return [false, $host];
-        }		
-		
-	}
+        }        
+        
+    }
 
 }
