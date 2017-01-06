@@ -63,10 +63,9 @@ class SubdomainRoute extends Route {
         } else {
             $host = $context['_host'];
         }
-
-        $prefix = $this->_getPrefixFromHost($host);
         
-        return [$prefix, $host];
+        $subdomainObject = new SubdomainMiddleware();
+        return $subdomainObject->getPrefixAndHost($host);
         
     }
 
@@ -78,11 +77,4 @@ class SubdomainRoute extends Route {
 
     }
         
-    private function _getPrefixFromHost($host) {
-        
-        $subdomainsObject = new SubdomainMiddleware();
-        return $subdomainsObject->getPrefixFromHost($host);
-        
-    }
-
 }

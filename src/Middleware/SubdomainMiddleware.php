@@ -69,25 +69,25 @@ class SubdomainMiddleware {
         return $subdomains;
         
     }
-    
-    public function getPrefixFromHost($host) {
-        
-        if (empty($host)) {
-            return false;    
-        }
-        
-        if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $match)) {
+	
+	public function getPrefixAndHost($host) {
+		
+		if (empty($host)) {
+			return [false, false];
+		}
+		
+		if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $match)) {
                         
             if (in_array($match[1], $this->getSubdomains())) {
-                return $match[1];
+                return [$match[1], $match[2]];
             } else {
-                return false;
+                return [false, $match[2]];
             }
             
         } else {
-            return false;
+            return [false, $host];
         }  
-        
-    }
+		
+	}
     
 }
