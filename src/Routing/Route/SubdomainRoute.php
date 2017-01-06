@@ -67,6 +67,8 @@ class SubdomainRoute extends Route {
 
         $prefix = $this->_getPrefixFromHost($host);
         
+        return [$prefix, $host];
+        
     }
 
     private function _checkPrefix($prefix) {
