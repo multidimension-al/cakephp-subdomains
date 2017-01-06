@@ -39,8 +39,8 @@ if (file_exists(CONFIG . 'subdomains.php')) {
  */
  
 EventManager::instance()->on(
-	'Server.buildMiddleware',
-	function ($event, $middleware) {
-		$middleware->add(new SubdomainMiddleware());
-	}
+    'Server.buildMiddleware',
+    function ($event, $middleware) {
+        $middleware->add(new SubdomainMiddleware());
+    }
 );

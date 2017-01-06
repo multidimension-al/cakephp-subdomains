@@ -19,40 +19,40 @@ use Cake\Core\Configure;
 
 class SubdomainMiddleware {
 		
-	/**
-	 * @param \Psr\Http\Message\ServerRequestInterface $request The request.
-	 * @param \Psr\Http\Message\ResponseInterface $response The response.
-	 * @param callable $next The next middleware to call.
-	 * @return \Psr\Http\Message\ResponseInterface A response.
-	 */
-	public function __invoke($request, $response, $next) {
+    /**
+     * @param \Psr\Http\Message\ServerRequestInterface $request The request.
+     * @param \Psr\Http\Message\ResponseInterface $response The response.
+     * @param callable $next The next middleware to call.
+     * @return \Psr\Http\Message\ResponseInterface A response.
+     */
+    public function __invoke($request, $response, $next) {
 		
-		$subdomains = $this->_getSubdomains();
+        $subdomains = $this->_getSubdomains();
 		
-		$uri = $request->getUri();
-		$host = $uri->getHost();
+        $uri = $request->getUri();
+        $host = $uri->getHost();
 		
-		if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $parts)) {
+        if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $parts)) {
 			
-			if (in_array($parts[1], $subdomains)) {
+            if (in_array($parts[1], $subdomains)) {
 			
-				$params = (array) $request->getAttribute('params', []);
+                $params = (array) $request->getAttribute('params', []);
 				
-				if (empty($params['prefix'])) {
-					$params['prefix'] = $parts[1];			
-				}
+                if (empty($params['prefix'])) {
+                    $params['prefix'] = $parts[1];			
+                }
 				
-				$request = $request->withAttribute('params', $params);
+                $request = $request->withAttribute('params', $params);
 			
-			}
+            }
 		
-		}
+        }
 		
-		return $next($request, $response);
+        return $next($request, $response);
 		
-	}	
+    }	
 	
-	private function _getSubdomains() {
+    private function _getSubdomains() {
         
         $validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
         
