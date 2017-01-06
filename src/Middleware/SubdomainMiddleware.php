@@ -27,8 +27,6 @@ class SubdomainMiddleware {
      */
     public function __invoke($request, $response, $next) {
         
-        $subdomains = $this->getSubdomains();
-        
         $uri = $request->getUri();
         $host = $uri->getHost();
         
