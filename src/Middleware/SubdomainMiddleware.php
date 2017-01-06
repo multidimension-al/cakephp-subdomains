@@ -70,4 +70,24 @@ class SubdomainMiddleware {
         
     }
     
+    public function getPrefixFromHost($host) {
+        
+        if (empty($host)) {
+            return false;    
+        }
+        
+        if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $match)) {
+                        
+            if (in_array($match[1], $this->getSubdomains())) {
+                return $match[1];
+            } else {
+                return false;
+            }
+            
+        } else {
+            return false;
+        }  
+        
+    }
+    
 }
