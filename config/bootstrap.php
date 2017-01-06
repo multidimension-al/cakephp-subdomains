@@ -12,9 +12,12 @@
  * @link          https://github.com/multidimension-al/cakephp-subdomains Github
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+ 
+namespace Multidimensional\Subdomains\Config;
 
 use Cake\Core\Configure;
 use Cake\Event\EventManager;
+use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 
 /*
  *
