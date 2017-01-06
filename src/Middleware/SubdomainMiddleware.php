@@ -39,7 +39,7 @@ class SubdomainMiddleware {
             $params = (array) $request->getAttribute('params', []);
             
             if (empty($params['prefix'])) {
-                $params['prefix'] = $parts[1];            
+                $params['prefix'] = $prefix;            
             }
             
             $request = $request->withAttribute('params', $params);
