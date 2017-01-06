@@ -14,6 +14,7 @@
  */
 
 use Cake\Core\Configure;
+use Cake\Event\EventManager;
 
 /*
  *
@@ -29,3 +30,14 @@ if (file_exists(CONFIG . 'subdomains.php')) {
 } else {
     Configure::write('Multidimensional/Subdomains', $subdomainConfig);
 }
+
+/*
+ *  Middleware
+ */
+ 
+EventManager::instance()->on(
+	'Server.buildMiddleware',
+	function ($event, $middleware) {
+		$middleware->add(new SubdomainMiddleware());
+	}
+);
