@@ -19,25 +19,9 @@ use Cake\Network\Request;
 use Cake\Routing\Router;
 use Cake\Core\Configure;
 
-trait SubdomainRouteTrait {
+use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 
-    private function _getSubdomains() {
-        
-        $validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
-        
-        if (!$validConfiguration) {
-            return [];
-        }
-        
-        $subdomains = Configure::read('Multidimensional/Subdomains.subdomains');
-        
-        if (!is_array($subdomains) || count($subdomains) == 0) {
-            return [];
-        }
-        
-        return $subdomains;
-        
-    }
+trait SubdomainRouteTrait {
 
     private function _getPrefixAndHost(array $context = []) {
 
@@ -102,6 +86,13 @@ trait SubdomainRouteTrait {
         
         return parent::match($url, $context);
 
+    }
+    
+    private function _getSubdomains() {
+        
+        $subdomains = new SubdomainMiddleware();
+        return $subdomains->getSubdomains();
+        
     }
 
 }
