@@ -12,50 +12,18 @@
  * @link          https://github.com/multidimension-al/cakephp-subdomains Github
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
- 
-namespace Multidimensional\Subdomains\Routing;
 
-use Cake\Network\Request;
+namespace Multidimensional\Subdomains\Routing\Route;
+
 use Cake\Routing\Router;
-use Cake\Core\Configure;
+use Cake\Network\Request;
+
+use Cake\Routing\Route\Route;
 
 use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 
-trait SubdomainRouteTrait {
-
-    private function _getPrefixAndHost(array $context = []) {
-
-        if (empty($context['_host'])) {
-            $request = Router::getRequest(true) ?: Request::createFromGlobals();
-            $host = $request->host();
-        } else {
-            $host = $context['_host'];
-        }
-
-        if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $parts)) {
-                        
-            if (in_array($parts[1], $this->_getSubdomains())) {
-                return [$parts[1], $parts[2]];
-            } else {
-                return [false, $parts[2]];
-            }
-            
-        } else {
-            return [false, $host];
-        }
-        
-        
-        
-    }
-
-    private function _checkPrefix($prefix) {
-
-        $routePrefix = isset($this->defaults['prefix']) ? $this->defaults['prefix'] : false;
-
-        return $prefix === $routePrefix;
-
-    }
-
+class SubdomainRoute extends Route {
+    	
     public function parse($url, $method = '') {
 
         list($prefix) = $this->_getPrefixAndHost();
@@ -73,7 +41,7 @@ trait SubdomainRouteTrait {
         if (!isset($url['prefix'])) {
             $url['prefix'] = false;
         }
-
+		
         if (!$this->_checkPrefix($url['prefix'])) {
             return false;
         }
@@ -87,12 +55,50 @@ trait SubdomainRouteTrait {
         return parent::match($url, $context);
 
     }
-    
+ 
+
+    private function _getPrefixAndHost(array $context = []) {
+
+        if (empty($context['_host'])) {
+            $request = Router::getRequest(true) ?: Request::createFromGlobals();
+            $host = $request->host();
+        } else {
+            $host = $context['_host'];
+        }
+
+		return $this->_subdomainCheck($host);
+        
+    }
+
+    private function _checkPrefix($prefix) {
+
+        $routePrefix = isset($this->defaults['prefix']) ? $this->defaults['prefix'] : false;
+
+        return $prefix === $routePrefix;
+
+    }
+	
     private function _getSubdomains() {
         
         $subdomains = new SubdomainMiddleware();
         return $subdomains->getSubdomains();
         
     }
+	
+	private function _subdomainCheck($host) {
+		
+		if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $parts)) {
+                        
+            if (in_array($parts[1], $this->_getSubdomains())) {
+                return [$parts[1], $parts[2]];
+            } else {
+                return [false, $parts[2]];
+            }
+            
+        } else {
+            return [false, $host];
+        }		
+		
+	}
 
 }

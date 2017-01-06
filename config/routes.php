@@ -15,29 +15,18 @@
 
 namespace Multidimensional\Subdomains\Config;
 
-use Multidimensional\Subdomains\Routing\Route\Route;
-use Multidimensional\Subdomains\Routing\Route\InflectedRoute;
-use Multidimensional\Subdomains\Routing\Route\DashedRoute;
+use Multidimensional\Subdomains\Routing\Route\SubdomainRoute;
+use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 
-use Cake\Core\Configure;
 use Cake\Routing\Router;
 
-$validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
+$subdomainsObject = new SubdomainMiddleware();
+$subdomains = $subdomainsObject->getSubdomains();
 
-if ($validConfiguration) {
-
-    $subdomains = Configure::read('Multidimensional/Subdomains.subdomains');
-    
-    if (is_array($subdomains)) {
-        
-        foreach ($subdomains AS $prefix) {
-            
-            Router::scope('/', ['prefix' => $prefix], function($routes) {
-                $routes->fallbacks(DashedRoute::class);
-            });
-            
-        }
-    
-    }
-    
+if (is_array($subdomains)) {   
+	foreach ($subdomains AS $prefix) {
+		Router::scope('/', ['prefix' => $prefix], function($routes) {
+			$routes->fallbacks('Multidimensional/Subdomains.SubdomainRoute');
+		});
+	}
 }
