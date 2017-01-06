@@ -17,9 +17,10 @@ namespace Multidimensional\Subdomains\Routing\Route;
 
 use Cake\Routing\Router;
 use Cake\Network\Request;
-use Cake\Core\Configure;
 
 use Cake\Routing\Route\Route;
+
+use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 
 class SubdomainRoute extends Route {
     	
@@ -54,24 +55,7 @@ class SubdomainRoute extends Route {
         return parent::match($url, $context);
 
     }
-    
-    private function _getSubdomains() {
-        
-        $validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
-        
-        if (!$validConfiguration) {
-            return [];
-        }
-        
-        $subdomains = Configure::read('Multidimensional/Subdomains.subdomains');
-        
-        if (!is_array($subdomains) || count($subdomains) == 0) {
-            return [];
-        }
-        
-        return $subdomains;
-        
-    }
+ 
 
     private function _getPrefixAndHost(array $context = []) {
 
@@ -82,17 +66,7 @@ class SubdomainRoute extends Route {
             $host = $context['_host'];
         }
 
-        if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $parts)) {
-                        
-            if (in_array($parts[1], $this->_getSubdomains())) {
-                return [$parts[1], $parts[2]];
-            } else {
-                return [false, $parts[2]];
-            }
-            
-        } else {
-            return [false, $host];
-        }
+		return $this->_subdomainCheck($host);
         
     }
 
@@ -103,5 +77,28 @@ class SubdomainRoute extends Route {
         return $prefix === $routePrefix;
 
     }
-    
+	
+    private function _getSubdomains() {
+        
+        $subdomains = new SubdomainMiddleware();
+        return $subdomains->getSubdomains();
+        
+    }
+	
+	private function _subdomainCheck($host) {
+		
+		if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $parts)) {
+                        
+            if (in_array($parts[1], $this->_getSubdomains())) {
+                return [$parts[1], $parts[2]];
+            } else {
+                return [false, $parts[2]];
+            }
+            
+        } else {
+            return [false, $host];
+        }		
+		
+	}
+
 }
