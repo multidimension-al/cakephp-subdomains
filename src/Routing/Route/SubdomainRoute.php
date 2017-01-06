@@ -54,7 +54,6 @@ class SubdomainRoute extends Route {
         return parent::match($url, $context);
 
     }
- 
 
     private function _getPrefixAndHost(array $context = []) {
 
@@ -78,14 +77,7 @@ class SubdomainRoute extends Route {
         return $prefix === $routePrefix;
 
     }
-    
-    private function _getSubdomains() {
         
-        $subdomainsObject = new SubdomainMiddleware();
-        return $subdomainsObject->getSubdomains();
-        
-    }
-    
     private function _getPrefixFromHost($host) {
         
         $subdomainsObject = new SubdomainMiddleware();
