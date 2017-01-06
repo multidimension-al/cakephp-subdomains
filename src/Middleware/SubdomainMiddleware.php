@@ -32,22 +32,20 @@ class SubdomainMiddleware {
         $uri = $request->getUri();
         $host = $uri->getHost();
         
-        if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $parts)) {
+        list($prefix) = $this->getPrefixAndHost($host);
+        
+        if($prefix !== false){
             
-            if (in_array($parts[1], $subdomains)) {
+            $params = (array) $request->getAttribute('params', []);
             
-                $params = (array) $request->getAttribute('params', []);
-                
-                if (empty($params['prefix'])) {
-                    $params['prefix'] = $parts[1];            
-                }
-                
-                $request = $request->withAttribute('params', $params);
-            
+            if (empty($params['prefix'])) {
+                $params['prefix'] = $parts[1];            
             }
+            
+            $request = $request->withAttribute('params', $params);
         
         }
-        
+
         return $next($request, $response);
         
     }    
@@ -69,14 +67,14 @@ class SubdomainMiddleware {
         return $subdomains;
         
     }
-	
-	public function getPrefixAndHost($host) {
-		
-		if (empty($host)) {
-			return [false, false];
-		}
-		
-		if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $match)) {
+    
+    public function getPrefixAndHost($host) {
+        
+        if (empty($host)) {
+            return [false, false];
+        }
+        
+        if (preg_match('/(.*?)\.([^\/]*\..{2,5})/i', $host, $match)) {
                         
             if (in_array($match[1], $this->getSubdomains())) {
                 return [$match[1], $match[2]];
@@ -87,7 +85,7 @@ class SubdomainMiddleware {
         } else {
             return [false, $host];
         }  
-		
-	}
+        
+    }
     
 }
