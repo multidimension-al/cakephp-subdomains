@@ -81,8 +81,8 @@ We need help writing unit tests, implementing Travis-CI and generally improving 
 
 ## To Do
 
-- [Travis CI and PHPUnit Testing]
-- [Fix Issue #15]
+* Travis CI and PHPUnit Testing
+* [Fix Issue #15](https://github.com/multidimension-al/cakephp-subdomains/issues/15)
 
 ## License
 
