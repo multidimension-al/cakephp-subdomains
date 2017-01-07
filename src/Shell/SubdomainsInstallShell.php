@@ -61,13 +61,13 @@ class SubdomainsInstallShell extends Shell {
     
     private function _displayCurrentUniqueSubdomains(&$subdomains) {
      
-		if ($this->_countSubdomains($subdomains)) {
+        if ($this->_countSubdomains($subdomains)) {
 		
-			$subdomains = $this->_uniqueSubdomains($subdomains);
-			$subdomains = $this->_modifyArray($subdomains);
-			$this->_displayCurrentSubdomains($subdomains);
+            $subdomains = $this->_uniqueSubdomains($subdomains);
+            $subdomains = $this->_modifyArray($subdomains);
+            $this->_displayCurrentSubdomains($subdomains);
 		
-		}
+        }
 
     }
     
