@@ -32,7 +32,7 @@ class SubdomainMiddleware {
         
         list($prefix) = $this->getPrefixAndHost($host);
         
-        if($prefix !== false){
+        if ($prefix !== false) {
             
             $params = (array) $request->getAttribute('params', []);
             

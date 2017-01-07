@@ -18,6 +18,8 @@ namespace Multidimensional\Subdomains\Shell;
 use Cake\Core\Configure;
 use Cake\Console\Shell;
 
+use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
+
 class SubdomainsInstallShell extends Shell {
     
     public function main() {
@@ -27,58 +29,52 @@ class SubdomainsInstallShell extends Shell {
         $this->helper('Multidimensional/Subdomains.Header')->output();
     
         $subdomains = $this->_getSubdomains();    
-            
-        if ($this->_countSubdomains($subdomains)) {
-            $continue = $this->_inputYesNo('Update configuration?');
-        } else {
-            $continue = $this->_inputYesNo('Install subdomains plugin?');
-        }
+        $continue = $this->_runProgram($subdomains);
                   
         if ($continue) {
             
             do {
                 
-                $addMore = true;
-                
-                if ($this->_countSubdomains($subdomains)) {
-                    $this->_displayCurrentUniqueSubdomains($subdomains);
-                    $addMore = $this->_inputYesNo('Add a subdomain?');              
-                }
-                
-                if ($addMore) {
-                        
-                    if (!$this->_countSubdomains($subdomains)) {
-                            $this->out();
-                        $this->out('Add your first subdomain.');
-                    }
-                        
-                    $this->_inputSubdomain($subdomains);
-                
-                }
-                            
+                $this->_inputSubdomain($subdomains);  
+                $this->_displayCurrentUniqueSubdomains($subdomains);          
                 $this->_deleteSubdomain($subdomains);
                 $this->_writeConfig($subdomains);
                 $this->_finalCheck($subdomains);
                 
             } while (!$this->_countSubdomains($subdomains) && $this->_inputYesNo('Start over?'));
-            
-            $this->_displayFinal($subdomains);
 
         }
+        
+        $this->_displayFinal($subdomains);
     
     }
     
-    private function _displayCurrentUniqueSubdomains(&$subdomains) {
+    private function _runProgram($subdomains) {
+                
+        if ($this->_countSubdomains($subdomains)) {
+            return $this->_inputYesNo('Update configuration?');    
+        } else {    
+            return $this->_inputYesNo('Install subdomains plugin?');    
+        }
         
-        $subdomains = $this->_uniqueSubdomains($subdomains);
-        $subdomains = $this->_modifyArray($subdomains);
-        $this->_displayCurrentSubdomains($subdomains);
+    }
+    
+    private function _displayCurrentUniqueSubdomains(&$subdomains) {
+     
+         if ($this->_countSubdomains($subdomains)) {   
+            $subdomains = $this->_uniqueSubdomains($subdomains);
+            $subdomains = $this->_modifyArray($subdomains);
+            $this->_displayCurrentSubdomains($subdomains);
+         }
         
     }
     
     private function _inputSubdomain(&$subdomains) {
     
-        do {
+        $valid = true;
+        $this->out();
+    
+        while (!$valid || $this->_inputYesNo('Add a subdomain?')) {
         
             $this->out();
             $subdomain = strtolower($this->in('Subdomain:'));
@@ -91,13 +87,17 @@ class SubdomainsInstallShell extends Shell {
                 $this->err('Invalid subdomain.');
             }
             
-        } while (!$valid || $this->_inputYesNo('Add a subdomain?'));            
+        };            
         
     }
         
     private function _uniqueSubdomains($subdomains) {
         
-        return array_values(array_unique($subdomains));
+        if ($this->_countSubdomains($subdomains)) {
+            return array_values(array_unique($subdomains));
+        } else {
+            return $subdomains;
+        }
         
     }
         
@@ -129,26 +129,23 @@ class SubdomainsInstallShell extends Shell {
     }
     
     private function _getSubdomains() {
-    
-        $check = Configure::check('Multidimensional/Subdomains.subdomains');
         
-        if (!$check) {
-            return false;    
-        }
-        
-        $subdomains = Configure::consume('Multidimensional/Subdomains.subdomains');
-        
-        if ($this->_countSubdomains($subdomains)) {
-            return $subdomains;
-        }
-        
-        return false;
+        $subdomainObject = new SubdomainMiddleware();
+        return $subdomainObject->getSubdomains();
         
     }
     
-    private function _modifyArray(array $array) {
-
-        return array_combine(range(1, count($array)), array_values($array)); ;    
+    private function _modifyArray(array $subdomains) {
+        
+        if ($this->_countSubdomains($subdomains)) {
+        
+            return array_combine(
+                range(1, count($subdomains)),
+                array_values($subdomains));
+                
+        } else {
+            return $subdomains;    
+        }
         
     }
     
@@ -180,8 +177,6 @@ class SubdomainsInstallShell extends Shell {
     }
 
     private function _deleteSubdomain(&$subdomains) {
-        
-        $this->_displayCurrentUniqueSubdomains($subdomains);
         
         while ($this->_countSubdomains($subdomains) && $this->_inputYesNo('Delete a subdomain?')) {
 
