@@ -17,6 +17,7 @@ namespace Multidimensional\Subdomains\Config;
 
 use Cake\Core\Configure;
 use Cake\Event\EventManager;
+
 use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 
 /*
@@ -26,7 +27,7 @@ use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
  *
  */
  
-$subdomainConfig = array('subdomains' => NULL);
+$subdomainConfig = array('Subdomains' => NULL);
 
 if (file_exists(CONFIG . 'subdomains.php')) {
     Configure::load('subdomains');

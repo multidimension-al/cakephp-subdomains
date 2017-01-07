@@ -50,13 +50,13 @@ class SubdomainMiddleware {
     
     public function getSubdomains() {
         
-        $validConfiguration = Configure::check('Multidimensional/Subdomains.subdomains');
+        $validConfiguration = Configure::check('Multidimensional/Subdomains.Subdomains');
         
         if (!$validConfiguration) {
             return [];
         }
         
-        $subdomains = Configure::read('Multidimensional/Subdomains.subdomains');
+        $subdomains = Configure::read('Multidimensional/Subdomains.Subdomains');
         
         if (!is_array($subdomains) || count($subdomains) == 0) {
             return [];

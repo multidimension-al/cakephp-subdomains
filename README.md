@@ -53,7 +53,7 @@ Alternatively, you can create a `config/subdomains.php` file in your main CakePH
 ```php
 return array(
     'Multidimensional/Subdomains' => 
-        array('subdomains' =>
+        array('Subdomains' =>
 			array('{SUBDOMAIN_1}', '{SUBDOMAIN_2}', /*...*/ '{SUBDOMAIN_N}')
 		)
 	);
@@ -78,6 +78,11 @@ $this->Html->link(['prefix'=>'admin', 'controller'=>'Articles', 'action'=>'index
 Please help our project by creating a fork, and sending a pull request.
 
 We need help writing unit tests, implementing Travis-CI and generally improving the functionality of the code.
+
+## To Do
+
+- [Travis CI and PHPUnit Testing]
+- [Fix Issue #15]
 
 ## License
 

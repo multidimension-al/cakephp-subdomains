@@ -107,7 +107,7 @@ class SubdomainsInstallShell extends Shell {
         
     private function _writeConfig($subdomains) {
         
-        Configure::write('Multidimensional/Subdomains.subdomains', array_values($subdomains));
+        Configure::write('Multidimensional/Subdomains.Subdomains', array_values($subdomains));
         Configure::dump('subdomains', 'default', ['Multidimensional/Subdomains']);    
         
     }
