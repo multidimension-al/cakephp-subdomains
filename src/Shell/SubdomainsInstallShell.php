@@ -53,7 +53,7 @@ class SubdomainsInstallShell extends Shell {
                 
         if ($this->_countSubdomains($subdomains)) {
             return $this->_inputYesNo('Update configuration?');    
-        } else {    
+        } else {
             return $this->_inputYesNo('Install subdomains plugin?');    
         }
         
@@ -61,12 +61,14 @@ class SubdomainsInstallShell extends Shell {
     
     private function _displayCurrentUniqueSubdomains(&$subdomains) {
      
-         if ($this->_countSubdomains($subdomains)) {   
-            $subdomains = $this->_uniqueSubdomains($subdomains);
-            $subdomains = $this->_modifyArray($subdomains);
-            $this->_displayCurrentSubdomains($subdomains);
-         }
-        
+		if ($this->_countSubdomains($subdomains)) {
+		
+			$subdomains = $this->_uniqueSubdomains($subdomains);
+			$subdomains = $this->_modifyArray($subdomains);
+			$this->_displayCurrentSubdomains($subdomains);
+		
+		}
+
     }
     
     private function _inputSubdomain(&$subdomains) {
@@ -90,7 +92,9 @@ class SubdomainsInstallShell extends Shell {
         };            
         
     }
-        
+    /**
+     * @return array $subdomains
+     */   
     private function _uniqueSubdomains($subdomains) {
         
         if ($this->_countSubdomains($subdomains)) {
