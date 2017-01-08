@@ -13,9 +13,19 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Subdomains\Tests\Shell;
+namespace Multidimensional\Subdomains\Tests\TestCase\Shell;
+
+use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 
 use Cake\Core\Configure;
 use Cake\Console\Shell;
+use Cake\TestSuite\TestCase;
 
-use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
+class SubdomainsInstallShellTest extends TestCase {
+  
+    public function setUp() {
+        parent::setUp();
+    }
+  
+  
+}
