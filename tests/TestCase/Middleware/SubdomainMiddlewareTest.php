@@ -15,3 +15,14 @@
 
 namespace Multidimensional\Subdomains\Tests\Middleware;
 
+use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
+use Cake\TestSuite\TestCase;
+
+class SubdomainMiddlewareTest extends TestCase {
+  
+    public function setUp() {
+        parent::setUp();
+    }
+  
+  
+}
