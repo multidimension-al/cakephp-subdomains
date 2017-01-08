@@ -13,4 +13,16 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Subdomains\Tests\Shell\Helper;
+namespace Multidimensional\Subdomains\Tests\TestCase\Shell\Helper;
+
+use Multidimensional\Subdomains\Shell\Helper\HeaderHelper;
+
+use Cake\TestSuite\TestCase;
+
+class HeaderHelperTest extends TestCase {
+  
+    public function setUp() {
+        parent::setUp();
+    }
+  
+}
