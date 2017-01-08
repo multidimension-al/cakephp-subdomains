@@ -15,8 +15,18 @@
 
 namespace Multidimensional\Subdomains\Tests\Routing\Route;
 
+use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
+use Multidimensional\Subdomains\Routing\Route\SubdomainRoute;
+
 use Cake\Routing\Router;
 use Cake\Network\Request;
 use Cake\Routing\Route\Route;
+use Cake\TestSuite\TestCase;
 
-use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
+class SubdomainRouteTest extends TestCase {
+  
+    public function setUp() {
+        parent::setUp();
+    }
+  
+}
