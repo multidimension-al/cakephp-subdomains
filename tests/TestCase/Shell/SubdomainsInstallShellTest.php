@@ -27,5 +27,4 @@ class SubdomainsInstallShellTest extends TestCase {
         parent::setUp();
     }
   
-  
 }
