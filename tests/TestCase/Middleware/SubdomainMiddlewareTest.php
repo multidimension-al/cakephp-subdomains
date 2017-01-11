@@ -17,11 +17,32 @@ namespace Multidimensional\Subdomains\Tests\TestCase\Middleware;
 
 use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 use Cake\TestSuite\TestCase;
+use Cake\Core\Configure;
 
 class SubdomainMiddlewareTest extends TestCase {
   
-    public function setUp() {
-        parent::setUp();
-    }
+  public function setUp() {
+      parent::setUp();
+      Configure::write('Multidimensional/Subdomains.Subdomains', ['admin']);
+  }
+  
+  public function tearDown() {
+      parent::tearDown();
+      Configure::erase('Multidimensional/Subdomains.Subdomains');
+  }
+  
+  public function testGetSubdomains() {
+    
+    
+  }
+  
+  public function testGetPrefixAndHost() {
+    
+    
+  }
+  
+  public function testInvoke() {
+    
+  }
   
 }
