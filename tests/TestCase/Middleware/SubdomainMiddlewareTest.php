@@ -28,7 +28,7 @@ class SubdomainMiddlewareTest extends TestCase {
   
   public function tearDown() {
       parent::tearDown();
-      Configure::erase('Multidimensional/Subdomains.Subdomains');
+      Configure::delete('Multidimensional/Subdomains.Subdomains');
   }
   
   public function testGetSubdomains() {
