@@ -27,4 +27,16 @@ class SubdomainsInstallShellTest extends TestCase {
         parent::setUp();
     }
   
+    public function testModifyArray() {
+   
+    }
+    
+    public function testValidateSubdomain() {
+        
+    }
+    
+    public function testCountSubdomains() {
+        
+    }
+  
 }
