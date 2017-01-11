@@ -28,5 +28,33 @@ class SubdomainRouteTest extends TestCase {
     public function setUp() {
         parent::setUp();
     }
+
+  /**
+  * @return void
+  */
+  public function testParse() {
+    
+  }
+  
+  /**
+  * @return void
+  */
+  public function testMatch() {
+    
+  }
+  
+  /**
+  * @return void
+  */
+  public function testGetPrefixAndHost() {
+    
+  }
+  
+  /**
+  * @return void
+  */
+  public function testCheckPrefix() {  
+    
+  }
   
 }
