@@ -59,6 +59,9 @@ class SubdomainsInstallShell extends Shell {
         
     }
     
+    /**
+    * @return void
+    */
     private function _displayCurrentUniqueSubdomains(&$subdomains) {
      
         if ($this->_countSubdomains($subdomains)) {
@@ -71,6 +74,9 @@ class SubdomainsInstallShell extends Shell {
 
     }
     
+    /**
+    * @return void
+    */
     private function _inputSubdomain(&$subdomains) {
     
         $valid = true;
@@ -92,6 +98,7 @@ class SubdomainsInstallShell extends Shell {
         };            
         
     }
+    
     /**
      * @return array $subdomains
      */   
@@ -102,9 +109,12 @@ class SubdomainsInstallShell extends Shell {
         } else {
             return $subdomains;
         }
-        
+       
     }
-        
+     
+    /**
+    * @return void
+    */
     private function _writeConfig($subdomains) {
         
         Configure::write('Multidimensional/Subdomains.Subdomains', array_values($subdomains));
@@ -112,6 +122,9 @@ class SubdomainsInstallShell extends Shell {
         
     }
     
+    /**
+    * @return void
+    */
     private function _displayFinal($subdomains) {
     
         $this->out();
@@ -123,6 +136,9 @@ class SubdomainsInstallShell extends Shell {
         
     }
     
+    /**
+    * @return void
+    */
     private function _finalCheck($subdomains) {
     
         if (!$this->_countSubdomains($subdomains)) {
@@ -153,7 +169,9 @@ class SubdomainsInstallShell extends Shell {
         
     }
     
-    
+    /**
+    * @return void
+    */
     private function _displayCurrentSubdomains(array $subdomains) {
         
         if ($this->_countSubdomains($subdomains)) {
@@ -173,6 +191,7 @@ class SubdomainsInstallShell extends Shell {
     
     /**
      * @param string $string
+     * @return bool
      */     
     private function _inputYesNo($string) {
     
@@ -199,6 +218,7 @@ class SubdomainsInstallShell extends Shell {
     
     /**
      * @param string|null $subdomain
+     * @return string|null
      */    
     private function _validateSubdomain($subdomain) {
     
@@ -210,6 +230,9 @@ class SubdomainsInstallShell extends Shell {
         
     }
     
+    /**
+    * @return int
+    */
     private function _countSubdomains($subdomains) {
        
         if (!isset($subdomains) || !is_array($subdomains)) {
