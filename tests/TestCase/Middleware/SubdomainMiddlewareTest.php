@@ -53,7 +53,7 @@ class SubdomainMiddlewareTest extends TestCase {
   }
   
   public function testInvoke() {
-      $this->configRequest(['uri' => ['_host' => 'admin.example.com']]);
+      //$this->configRequest(['uri' => ['_host' => 'admin.example.com']]);
       $request = $this->getMockBuilder('Psr\Http\Message\ServerRequestInterface')->getMock();
       $response = $this->getMockBuilder('Psr\Http\Message\ResponseInterface')->getMock();
       //$this->SubdomainMiddleware->__invoke($request, $resposne, $name);
