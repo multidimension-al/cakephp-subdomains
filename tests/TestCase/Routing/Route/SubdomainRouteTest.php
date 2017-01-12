@@ -41,29 +41,29 @@ class SubdomainRouteTest extends TestCase {
     /**
     * @return void
     */
-    public function testParse() {
-
-        $url = ['prefix' => 'admin', 'Controller' => 'pages', 'action' => 'index'];
-        $response = $this->SubdomainRoute->parse($url, '');
-        //assertSame
-        $url = ['prefix' => 'users', 'Controller' => 'pages', 'action' => 'index'];
-        $response = $this->SubdomainRoute->parse($url, '');
-        //assertwrong
-
-    }
-
+    /* public function testParse() {
+     *
+     *   $url = ['prefix' => 'admin', 'Controller' => 'pages', 'action' => 'index'];
+     *   $response = $this->SubdomainRoute->parse($url, '');
+     *   //assertSame
+     *   $url = ['prefix' => 'users', 'Controller' => 'pages', 'action' => 'index'];
+     *   $response = $this->SubdomainRoute->parse($url, '');
+     *   //assertwrong
+     *
+     * }
+     */
     /**
     * @return void
     */
-    public function testMatch() {
-
-        $url = ['prefix' => 'admin', 'Controller' => 'pages', 'action' => 'index'];
-        $response = $this->SubdomainRoute->match($url, '');
-        //assertSame
-        $url = ['prefix' => 'users', 'Controller' => 'pages', 'action' => 'index'];
-        $response = $this->SubdomainRoute->match($url, '');
-        //assertwrong
-
-    }
-  
+    /* public function testMatch() {
+     *
+     *   $url = ['prefix' => 'admin', 'Controller' => 'pages', 'action' => 'index'];
+     *  $response = $this->SubdomainRoute->match($url, '');
+     *   //assertSame
+     *   $url = ['prefix' => 'users', 'Controller' => 'pages', 'action' => 'index'];
+     *   $response = $this->SubdomainRoute->match($url, '');
+     *   //assertwrong
+     *
+     * }
+     */ 
 }
