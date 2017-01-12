@@ -33,18 +33,18 @@ class SubdomainMiddlewareTest extends TestCase {
   }
   
   public function testGetSubdomains() {
-      $subdomains = SubdomainMiddleware->getSubdomains();
+      $subdomains = SubdomainMiddleware::getSubdomains();
       $this->assertEquals($subdomains, ['admin']);
   }
   
   public function testGetPrefixAndHost() {
-      $array = SubdomainMiddleware->getPrefixAndHost('admin.example.com');
+      $array = SubdomainMiddleware::getPrefixAndHost('admin.example.com');
       $this->assertEquals($array, ['admin', 'example.com']);
       unset($array);
-      $array = SubdomainMiddleware->getPrefixAndHost('subdomain.example.com');
+      $array = SubdomainMiddleware::getPrefixAndHost('subdomain.example.com');
       $this->assertEquals($array, [false, 'example.com']);
       unset($array);
-      $array = SubdomainMiddleware->getPrefixAndHost('example.com');
+      $array = SubdomainMiddleware::getPrefixAndHost('example.com');
       $this->assertEquals($array, [false, 'example.com']);
   }
   
