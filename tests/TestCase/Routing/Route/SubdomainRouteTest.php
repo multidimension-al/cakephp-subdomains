@@ -22,25 +22,48 @@ use Cake\Routing\Router;
 use Cake\Network\Request;
 use Cake\Routing\Route\Route;
 use Cake\TestSuite\TestCase;
+use Cake\Core\Configure;
 
 class SubdomainRouteTest extends TestCase {
+    
+    private $SubdomainRoute;
   
     public function setUp() {
         parent::setUp();
+        Configure::write('Multidimensional/Subdomains.Subdomains', ['admin']);
+        $this->SubdomainRoute = new SubdomainRoute();
+    }
+    
+    public function tearDown() {
+        unset($this->SubdomainRoute);   
     }
 
-  /**
-  * @return void
-  */
-  public function testParse() {
-    
-  }
-  
-  /**
-  * @return void
-  */
-  public function testMatch() {
-    
-  }
+    /**
+    * @return void
+    */
+    public function testParse() {
+
+        $url = ['prefix' => 'admin', 'Controller' => 'pages', 'action' => 'index'];
+        $response = $this->SubdomainRoute->parse($url, '');
+        //assertSame
+        $url = ['prefix' => 'users', 'Controller' => 'pages', 'action' => 'index'];
+        $response = $this->SubdomainRoute->parse($url, '');
+        //assertwrong
+
+    }
+
+    /**
+    * @return void
+    */
+    public function testMatch() {
+
+        $url = ['prefix' => 'admin', 'Controller' => 'pages', 'action' => 'index'];
+        $response = $this->SubdomainRoute->match($url, '');
+        //assertSame
+        $url = ['prefix' => 'users', 'Controller' => 'pages', 'action' => 'index'];
+        $response = $this->SubdomainRoute->match($url, '');
+        //assertwrong
+
+    }
   
 }
