@@ -15,16 +15,23 @@
 
 namespace Multidimensional\Subdomains\Tests\TestCase\Shell;
 
-use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
+use Multidimensional\Subdomains\Shell\SubdomainsInstallShell;
+use Multidimensional\Subdomains\Test\Shell\SubdomainsInstallShell;
 
 use Cake\Core\Configure;
 use Cake\Console\Shell;
+
 use Cake\TestSuite\TestCase;
 
 class SubdomainsInstallShellTest extends TestCase {
   
+    private $subdomains;
+    
     public function setUp() {
         parent::setUp();
+        
+        $this->subdomains = new SubdomainsInstallShell();
+        
     }
   
     public function testModifyArray() {
@@ -37,6 +44,11 @@ class SubdomainsInstallShellTest extends TestCase {
     
     public function testCountSubdomains() {
         
+        $rand = rand(3,9);
+        $array = range(1, $rand);
+        $count = $this->subdomains->invokeMethod($this->subdomains, '_countSubdomains', [$array]);
+        $this->assertEquals($count, $rand);
+      
     }
   
 }
