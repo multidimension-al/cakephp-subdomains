@@ -43,18 +43,4 @@ class SubdomainRouteTest extends TestCase {
     
   }
   
-  /**
-  * @return void
-  */
-  public function testGetPrefixAndHost() {
-    
-  }
-  
-  /**
-  * @return void
-  */
-  public function testCheckPrefix() {  
-    
-  }
-  
 }
