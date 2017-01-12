@@ -17,11 +17,10 @@ namespace Multidimensional\Subdomains\Tests\TestCase\Middleware;
 
 use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 
-use Cake\TestSuite\TestCase;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Core\Configure;
 
-class SubdomainMiddlewareTest extends TestCase {
+class SubdomainMiddlewareTest extends IntegrationTestCase {
   
     private $subdomainMiddleware;
 
