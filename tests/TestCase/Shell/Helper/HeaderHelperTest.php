@@ -25,8 +25,9 @@ class HeaderHelperTest extends TestCase {
         parent::setUp();
     }
     
-    public function testOutput() {
-        
-    }
+    /* public function testOutput() {
+     *   
+     * }
+     */
     
 }
