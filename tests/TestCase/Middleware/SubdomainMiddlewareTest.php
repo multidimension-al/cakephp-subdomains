@@ -22,29 +22,33 @@ use Cake\Core\Configure;
 
 class SubdomainMiddlewareTest extends TestCase {
   
+  private $subdomainMiddleware;
+  
   public function setUp() {
       parent::setUp();
       Configure::write('Multidimensional/Subdomains.Subdomains', ['admin']);
+      $this->SubdomainMiddleware = new SubdomainMiddleware();
   }
   
   public function tearDown() {
       parent::tearDown();
       Configure::delete('Multidimensional/Subdomains.Subdomains');
+      unset($this->SubdomainMiddleware);
   }
   
   public function testGetSubdomains() {
-      $subdomains = SubdomainMiddleware::getSubdomains();
+      $subdomains = $this->SubdomainMiddleware->getSubdomains();
       $this->assertEquals($subdomains, ['admin']);
   }
   
   public function testGetPrefixAndHost() {
-      $array = SubdomainMiddleware::getPrefixAndHost('admin.example.com');
+      $array = $this->SubdomainMiddleware->getPrefixAndHost('admin.example.com');
       $this->assertEquals($array, ['admin', 'example.com']);
       unset($array);
-      $array = SubdomainMiddleware::getPrefixAndHost('subdomain.example.com');
+      $array = $this->SubdomainMiddleware->getPrefixAndHost('subdomain.example.com');
       $this->assertEquals($array, [false, 'example.com']);
       unset($array);
-      $array = SubdomainMiddleware::getPrefixAndHost('example.com');
+      $array = $this->SubdomainMiddleware->getPrefixAndHost('example.com');
       $this->assertEquals($array, [false, 'example.com']);
   }
   
