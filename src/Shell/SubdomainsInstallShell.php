@@ -60,8 +60,8 @@ class SubdomainsInstallShell extends Shell {
     }
     
     /**
-    * @return void
-    */
+     * @return void
+     */
     private function _displayCurrentUniqueSubdomains(&$subdomains) {
      
         if ($this->_countSubdomains($subdomains)) {
@@ -75,8 +75,8 @@ class SubdomainsInstallShell extends Shell {
     }
     
     /**
-    * @return void
-    */
+     * @return void
+     */
     private function _inputSubdomain(&$subdomains) {
     
         $valid = true;
@@ -113,8 +113,8 @@ class SubdomainsInstallShell extends Shell {
     }
      
     /**
-    * @return void
-    */
+     * @return void
+     */
     private function _writeConfig($subdomains) {
         
         Configure::write('Multidimensional/Subdomains.Subdomains', array_values($subdomains));
@@ -123,8 +123,8 @@ class SubdomainsInstallShell extends Shell {
     }
     
     /**
-    * @return void
-    */
+     * @return void
+     */
     private function _displayFinal($subdomains) {
     
         $this->out();
@@ -137,8 +137,8 @@ class SubdomainsInstallShell extends Shell {
     }
     
     /**
-    * @return void
-    */
+     * @return void
+     */
     private function _finalCheck($subdomains) {
     
         if (!$this->_countSubdomains($subdomains)) {
@@ -170,8 +170,8 @@ class SubdomainsInstallShell extends Shell {
     }
     
     /**
-    * @return void
-    */
+     * @return void
+     */
     private function _displayCurrentSubdomains(array $subdomains) {
         
         if ($this->_countSubdomains($subdomains)) {
@@ -231,8 +231,8 @@ class SubdomainsInstallShell extends Shell {
     }
     
     /**
-    * @return int
-    */
+     * @return int
+     */
     private function _countSubdomains($subdomains) {
        
         if (!isset($subdomains) || !is_array($subdomains)) {
