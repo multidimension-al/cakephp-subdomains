@@ -16,7 +16,7 @@
 namespace Multidimensional\Subdomains\Tests\TestCase\Middleware;
 
 use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
-use Cake\TestSuite\TestCase;
+
 use Cake\Core\Configure;
 
 class SubdomainMiddlewareTest extends TestCase {
@@ -32,18 +32,18 @@ class SubdomainMiddlewareTest extends TestCase {
   }
   
   public function testGetSubdomains() {
-      $subdomains = $this->SubdomainMiddleware->getSubdomains();
+      $subdomains = SubdomainMiddleware()->getSubdomains();
       $this->assertEquals($subdomains, ['admin']);
   }
   
   public function testGetPrefixAndHost() {
-      $array = $this->SubdomainMiddleware->getPrefixAndHost('admin.example.com');
+      $array = SubdomainMiddleware()->getPrefixAndHost('admin.example.com');
       $this->assertEquals($array, ['admin', 'example.com']);
       unset($array);
-      $array = $this->SubdomainMiddleware->getPrefixAndHost('subdomain.example.com');
+      $array = SubdomainMiddleware()->getPrefixAndHost('subdomain.example.com');
       $this->assertEquals($array, [false, 'example.com']);
       unset($array);
-      $array = $this->SubdomainMiddleware->getPrefixAndHost('example.com');
+      $array = SubdomainMiddleware()->getPrefixAndHost('example.com');
       $this->assertEquals($array, [false, 'example.com']);
   }
   
