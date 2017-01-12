@@ -1,6 +1,6 @@
 filter:
     paths: 
-        - 'lib/*'
+        - 'src/*'
     excluded_paths:
         - 'tests/*'
 checks:
