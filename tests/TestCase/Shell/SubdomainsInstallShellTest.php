@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Subdomains\Tests\TestCase\Shell;
+namespace Multidimensional\Subdomains\Tests\Shell;
 
 use Multidimensional\Subdomains\Shell\SubdomainsInstallShell;
 
