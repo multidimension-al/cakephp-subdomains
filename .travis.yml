@@ -32,7 +32,7 @@ before_script:
   - travis_retry composer install --prefer-source --no-interaction
 
 script:
-  - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --standard=CakePHP ./plugins/multidimensional/cakephpify/; fi
+  - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --standard=CakePHP; fi
   - if [[ $DEFAULT = 1 ]] ; then ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover; fi
 
 after_script:
