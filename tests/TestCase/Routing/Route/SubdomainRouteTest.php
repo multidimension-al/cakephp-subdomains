@@ -17,8 +17,8 @@ namespace Multidimensional\Subdomains\Tests\TestCase\Routing\Route;
 
 use Cake\Core\Configure;
 use Cake\Network\Request;
-use Cake\Routing\Route\Route;
 use Cake\Routing\Router;
+use Cake\Routing\Route\Route;
 use Cake\TestSuite\TestCase;
 use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 use Multidimensional\Subdomains\Routing\Route\SubdomainRoute;
@@ -27,7 +27,7 @@ class SubdomainRouteTest extends TestCase
 {
 
     private $SubdomainRoute;
-    
+
     /**
      * @return void
      */
@@ -37,7 +37,7 @@ class SubdomainRouteTest extends TestCase
         Configure::write('Multidimensional/Subdomains.Subdomains', ['admin']);
         $this->SubdomainRoute = new SubdomainRoute();
     }
-    
+
     /**
      * @return void
      */
@@ -49,7 +49,8 @@ class SubdomainRouteTest extends TestCase
     /**
      * @return void
      */
-    public function testParse() {
+    public function testParse()
+    {
         $this->markTestIncomplete('Not implemented yet.');
         /*$url = ['prefix' => 'admin', 'Controller' => 'pages', 'action' => 'index'];
         $response = $this->SubdomainRoute->parse($url, '');
@@ -57,12 +58,13 @@ class SubdomainRouteTest extends TestCase
         $url = ['prefix' => 'users', 'Controller' => 'pages', 'action' => 'index'];
         $response = $this->SubdomainRoute->parse($url, '');
         //assertwrong*/
-     }
-    
+    }
+
     /**
      * @return void
      */
-    public function testMatch() {
+    public function testMatch()
+    {
         $this->markTestIncomplete('Not implemented yet.');
         /*$url = ['prefix' => 'admin', 'Controller' => 'pages', 'action' => 'index'];
         $response = $this->SubdomainRoute->match($url, '');
@@ -71,5 +73,4 @@ class SubdomainRouteTest extends TestCase
         $response = $this->SubdomainRoute->match($url, '');
         //assertwrong*/
     }
-    
 }

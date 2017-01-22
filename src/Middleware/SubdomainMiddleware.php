@@ -28,7 +28,6 @@ class SubdomainMiddleware
      */
     public function __invoke($request, $response, $next)
     {
-
         $uri = $request->getUri();
         $host = $uri->getHost();
 
@@ -52,7 +51,6 @@ class SubdomainMiddleware
      */
     public function getSubdomains()
     {
-
         $validConfiguration = Configure::check('Multidimensional/Subdomains.Subdomains');
 
         if (!$validConfiguration) {
@@ -74,7 +72,6 @@ class SubdomainMiddleware
      */
     public function getPrefixAndHost($host)
     {
-
         if (empty($host)) {
             return [false, false];
         }

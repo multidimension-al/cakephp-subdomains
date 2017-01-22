@@ -16,21 +16,20 @@
 namespace Multidimensional\Subdomains\Routing\Route;
 
 use Cake\Network\Request;
-use Cake\Routing\Route\Route;
 use Cake\Routing\Router;
+use Cake\Routing\Route\Route;
 use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 
 class SubdomainRoute extends Route
 {
 
     /**
-     * @param string $url 
+     * @param string $url
      * @param string $method
      * @return bool|array
      */
     public function parse($url, $method = '')
     {
-
         list($prefix) = $this->_getPrefixAndHost();
 
         if (!$this->_checkPrefix($prefix)) {
@@ -47,7 +46,6 @@ class SubdomainRoute extends Route
      */
     public function match(array $url, array $context = [])
     {
-
         if (!isset($url['prefix'])) {
             $url['prefix'] = false;
         }
@@ -71,7 +69,6 @@ class SubdomainRoute extends Route
      */
     private function _getPrefixAndHost(array $context = [])
     {
-
         if (empty($context['_host'])) {
             $request = Router::getRequest(true) ?: Request::createFromGlobals();
             $host = $request->host();
@@ -90,7 +87,6 @@ class SubdomainRoute extends Route
      */
     private function _checkPrefix($prefix)
     {
-
         $routePrefix = isset($this->defaults['prefix']) ? $this->defaults['prefix'] : false;
 
         return $prefix === $routePrefix;

@@ -28,12 +28,12 @@ class HeaderHelperTest extends TestCase
     {
         parent::setUp();
     }
-    
+
     /**
      * @return void
      */
-    public function testOutput() {
+    public function testOutput()
+    {
         $this->markTestIncomplete('Not implemented yet.');
     }
-    
 }

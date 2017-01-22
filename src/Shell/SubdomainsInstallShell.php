@@ -27,7 +27,6 @@ class SubdomainsInstallShell extends Shell
      */
     public function main()
     {
-
         $this->clear();
 
         $this->helper('Multidimensional/Subdomains.Header')->output();
@@ -54,7 +53,6 @@ class SubdomainsInstallShell extends Shell
      */
     private function _runProgram($subdomains)
     {
-
         if ($this->_countSubdomains($subdomains)) {
             return $this->_inputYesNo('Update configuration?');
         } else {
@@ -68,7 +66,6 @@ class SubdomainsInstallShell extends Shell
      */
     private function _displayCurrentUniqueSubdomains(&$subdomains)
     {
-
         if ($this->_countSubdomains($subdomains)) {
             $subdomains = $this->_uniqueSubdomains($subdomains);
             $subdomains = $this->_modifyArray($subdomains);
@@ -82,7 +79,6 @@ class SubdomainsInstallShell extends Shell
      */
     private function _inputSubdomain(&$subdomains)
     {
-
         $valid = true;
         $this->out();
 
@@ -106,7 +102,6 @@ class SubdomainsInstallShell extends Shell
      */
     private function _uniqueSubdomains($subdomains)
     {
-
         if ($this->_countSubdomains($subdomains)) {
             return array_values(array_unique($subdomains));
         } else {
@@ -120,7 +115,6 @@ class SubdomainsInstallShell extends Shell
      */
     private function _writeConfig($subdomains)
     {
-
         Configure::write('Multidimensional/Subdomains.Subdomains', array_values($subdomains));
         Configure::dump('subdomains', 'default', ['Multidimensional/Subdomains']);
     }
@@ -131,7 +125,6 @@ class SubdomainsInstallShell extends Shell
      */
     private function _displayFinal($subdomains)
     {
-
         $this->out();
         if ($this->_countSubdomains($subdomains)) {
             $this->out('Configuration saved!', 2);
@@ -146,7 +139,6 @@ class SubdomainsInstallShell extends Shell
      */
     private function _finalCheck($subdomains)
     {
-
         if (!$this->_countSubdomains($subdomains)) {
             $this->out();
             $this->err('No subdomains configured.', 2);
@@ -158,7 +150,6 @@ class SubdomainsInstallShell extends Shell
      */
     private function _getSubdomains()
     {
-
         $subdomainObject = new SubdomainMiddleware();
 
         return $subdomainObject->getSubdomains();
@@ -170,7 +161,6 @@ class SubdomainsInstallShell extends Shell
      */
     private function _modifyArray(array $subdomains)
     {
-
         if ($this->_countSubdomains($subdomains)) {
             return array_combine(
                 range(1, count($subdomains)),
@@ -187,8 +177,7 @@ class SubdomainsInstallShell extends Shell
      */
     private function _displayCurrentSubdomains(array $subdomains)
     {
-
-        if ($this->_countSubdomains($subdomains)) {
+     if ($this->_countSubdomains($subdomains)) {
             $this->out();
             $this->out('Current subdomains:', 2);
 
@@ -206,13 +195,11 @@ class SubdomainsInstallShell extends Shell
      */
     private function _inputYesNo($string)
     {
-
         return strtolower($this->in($string, ['y', 'n'])) === 'y';
     }
 
     private function _deleteSubdomain(&$subdomains)
     {
-
         while ($this->_countSubdomains($subdomains) && $this->_inputYesNo('Delete a subdomain?')) {
             $this->out();
             $key = (int)$this->in('Enter number to delete:', array_keys($subdomains));
@@ -231,7 +218,6 @@ class SubdomainsInstallShell extends Shell
      */
     private function _validateSubdomain($subdomain)
     {
-
         if (is_null($subdomain) || empty($subdomain)) {
             return false;
         }
@@ -245,7 +231,6 @@ class SubdomainsInstallShell extends Shell
      */
     private function _countSubdomains($subdomains)
     {
-
         if (!isset($subdomains) || !is_array($subdomains)) {
             return 0;
         }

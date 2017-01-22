@@ -23,7 +23,7 @@ class SubdomainMiddlewareTest extends IntegrationTestCase
 {
 
     private $subdomainMiddleware;
-    
+
     /**
      * @return void
      */
@@ -34,7 +34,7 @@ class SubdomainMiddlewareTest extends IntegrationTestCase
         $this->SubdomainMiddleware = new SubdomainMiddleware();
         $this->useHttpServer(true);
     }
-    
+
     /**
      * @return void
      */
@@ -72,12 +72,12 @@ class SubdomainMiddlewareTest extends IntegrationTestCase
     /**
      * @return void
      */
-    public function testInvoke() {
+    public function testInvoke()
+    {
         $this->markTestIncomplete('Not implemented yet.');
         /*$this->configRequest(['uri' => ['_host' => 'admin.example.com']]);
         $request = $this->getMockBuilder('Psr\Http\Message\ServerRequestInterface')->getMock();
         $response = $this->getMockBuilder('Psr\Http\Message\ResponseInterface')->getMock();
         $this->SubdomainMiddleware->__invoke($request, $resposne, $name);*/
     }
-   
 }

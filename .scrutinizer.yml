@@ -53,7 +53,7 @@ coding_style:
                 linefeed_character: newline
             before_parentheses:
                 function_declaration: false
-                closure_definition: false
+                closure_definition: true
                 function_call: false
                 if: true
                 for: true
@@ -118,7 +118,7 @@ coding_style:
             classes_functions:
                 class: new-line
                 function: new-line
-                closure: new-line
+                closure: end-of-line
             if:
                 opening: end-of-line
                 always: true

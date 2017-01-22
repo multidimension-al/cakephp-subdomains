@@ -15,10 +15,9 @@
 
 namespace Multidimensional\Subdomains\Config;
 
-use Multidimensional\Subdomains\Routing\Route\SubdomainRoute;
-use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
-
 use Cake\Routing\Router;
+use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
+use Multidimensional\Subdomains\Routing\Route\SubdomainRoute;
 
 $subdomainsObject = new SubdomainMiddleware();
 $subdomains = $subdomainsObject->getSubdomains();
