@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Subdomains\Tests\Routing\Route;
+namespace Multidimensional\Subdomains\Tests\TestCase\Routing\Route;
 
 use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 use Multidimensional\Subdomains\Routing\Route\SubdomainRoute;

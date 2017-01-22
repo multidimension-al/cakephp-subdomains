@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Subdomains\Tests\Middleware;
+namespace Multidimensional\Subdomains\Tests\TestCase\Middleware;
 
 use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 
