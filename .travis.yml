@@ -9,7 +9,8 @@ php:
 env:
   global:
     - DEFAULT=1
-      CAKE_VERSION='3.3.*'
+  matrix:
+    - CAKE_VERSION='3.3.*'
 
 matrix:
   fast_finish: true
