@@ -177,7 +177,7 @@ class SubdomainsInstallShell extends Shell
      */
     private function _displayCurrentSubdomains(array $subdomains)
     {
-     if ($this->_countSubdomains($subdomains)) {
+        if ($this->_countSubdomains($subdomains)) {
             $this->out();
             $this->out('Current subdomains:', 2);
 
@@ -198,6 +198,10 @@ class SubdomainsInstallShell extends Shell
         return strtolower($this->in($string, ['y', 'n'])) === 'y';
     }
 
+    /**
+     * @param array $subdomains
+     * @return void
+     */
     private function _deleteSubdomain(&$subdomains)
     {
         while ($this->_countSubdomains($subdomains) && $this->_inputYesNo('Delete a subdomain?')) {
