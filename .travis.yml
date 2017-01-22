@@ -24,20 +24,20 @@ matrix:
       env: PHPCS=1 DEFAULT=0
 
 before_install:
-  - travis_retry composer require phpunit/phpunit --no-interaction
-  - travis_retry composer require "cakephp/cakephp-codesniffer=2.*" --no-interaction
-  - ./vendor/bin/phpcs --config-set installed_paths /home/travis/build/test/vendor/cakephp/cakephp-codesniffer
+  - if [[ $DEFAULT = 1 ]] ; then travis_retry composer require phpunit/phpunit --no-interaction ; fi
+  - if [[ $PHPCS = 1 ]] ; then travis_retry composer require "cakephp/cakephp-codesniffer=2.*" --no-interaction ; fi
+  - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --config-set installed_paths /home/travis/build/multidimension-al/cakephp-subdomains/vendor/cakephp/cakephp-codesniffer ; fi
 
 before_script:
   - travis_retry composer install --prefer-source --no-interaction
 
 script:
-  - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --standard=CakePHP; fi
-  - if [[ $DEFAULT = 1 ]] ; then ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover; fi
+  - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --standard=CakePHP ; fi
+  - if [[ $DEFAULT = 1 ]] ; then ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover ; fi
 
 after_script:
-  - if [[ $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 ]] ; then wget https://scrutinizer-ci.com/ocular.phar ; fi
-  - if [[ $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 ]] ; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover ; fi
+  - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 ]] ; then wget https://scrutinizer-ci.com/ocular.phar ; fi
+  - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 ]] ; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover ; fi
 
 notifications:
   email: false
