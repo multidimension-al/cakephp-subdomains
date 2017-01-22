@@ -15,18 +15,19 @@
 
 namespace Multidimensional\Subdomains\Tests\TestCase\Shell;
 
-use Multidimensional\Subdomains\Shell\SubdomainsInstallShell;
-
-use Cake\Core\Configure;
 use Cake\Console\Shell;
-
+use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
+use Multidimensional\Subdomains\Shell\SubdomainsInstallShell;
 
 class SubdomainsInstallShellTest extends TestCase
 {
 
     private $subdomains;
 
+    /**
+     * @return void
+     */
     public function setUp()
     {
         parent::setUp();
@@ -34,7 +35,11 @@ class SubdomainsInstallShellTest extends TestCase
         $this->subdomains = new SubdomainsInstallShell();
     }
 
+    /**
+     * @return void
+     */
     public function testMain()
     {
+        $this->markTestIncomplete('Not implemented yet.');
     }
 }

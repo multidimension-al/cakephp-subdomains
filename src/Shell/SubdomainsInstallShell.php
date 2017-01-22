@@ -15,14 +15,16 @@
 
 namespace Multidimensional\Subdomains\Shell;
 
-use Cake\Core\Configure;
 use Cake\Console\Shell;
-
+use Cake\Core\Configure;
 use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 
 class SubdomainsInstallShell extends Shell
 {
 
+    /**
+     * @return void
+     */
     public function main()
     {
 
@@ -46,6 +48,10 @@ class SubdomainsInstallShell extends Shell
         $this->_displayFinal($subdomains);
     }
 
+    /**
+     * @param array $subdomains
+     * @return bool
+     */
     private function _runProgram($subdomains)
     {
 
@@ -57,6 +63,7 @@ class SubdomainsInstallShell extends Shell
     }
 
     /**
+     * @param array $subdomains
      * @return void
      */
     private function _displayCurrentUniqueSubdomains(&$subdomains)
@@ -70,6 +77,7 @@ class SubdomainsInstallShell extends Shell
     }
 
     /**
+     * @param array $subdomains
      * @return void
      */
     private function _inputSubdomain(&$subdomains)
@@ -93,6 +101,7 @@ class SubdomainsInstallShell extends Shell
     }
 
     /**
+     * @param array $subdomains
      * @return array $subdomains
      */
     private function _uniqueSubdomains($subdomains)
@@ -106,6 +115,7 @@ class SubdomainsInstallShell extends Shell
     }
 
     /**
+     * @param array $subdomains
      * @return void
      */
     private function _writeConfig($subdomains)
@@ -116,6 +126,7 @@ class SubdomainsInstallShell extends Shell
     }
 
     /**
+     * @param array $subdomains
      * @return void
      */
     private function _displayFinal($subdomains)
@@ -130,6 +141,7 @@ class SubdomainsInstallShell extends Shell
     }
 
     /**
+     * @param array $subdomains
      * @return void
      */
     private function _finalCheck($subdomains)
@@ -141,6 +153,9 @@ class SubdomainsInstallShell extends Shell
         }
     }
 
+    /**
+     * @return SubdomainMiddleware
+     */
     private function _getSubdomains()
     {
 
@@ -149,6 +164,10 @@ class SubdomainsInstallShell extends Shell
         return $subdomainObject->getSubdomains();
     }
 
+    /**
+     * @param array $subdomains
+     * @return array
+     */
     private function _modifyArray(array $subdomains)
     {
 
@@ -163,6 +182,7 @@ class SubdomainsInstallShell extends Shell
     }
 
     /**
+     * @param array $subdomains
      * @return void
      */
     private function _displayCurrentSubdomains(array $subdomains)
@@ -206,7 +226,7 @@ class SubdomainsInstallShell extends Shell
     }
 
     /**
-     * @param string|null $subdomain
+     * @param  string|null $subdomain
      * @return string|null
      */
     private function _validateSubdomain($subdomain)
@@ -220,6 +240,7 @@ class SubdomainsInstallShell extends Shell
     }
 
     /**
+     * @param  array $subdomains
      * @return int
      */
     private function _countSubdomains($subdomains)

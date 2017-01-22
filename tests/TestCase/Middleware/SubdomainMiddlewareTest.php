@@ -15,16 +15,18 @@
 
 namespace Multidimensional\Subdomains\Tests\TestCase\Middleware;
 
-use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
-
-use Cake\TestSuite\IntegrationTestCase;
 use Cake\Core\Configure;
+use Cake\TestSuite\IntegrationTestCase;
+use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 
 class SubdomainMiddlewareTest extends IntegrationTestCase
 {
 
     private $subdomainMiddleware;
-
+    
+    /**
+     * @return void
+     */
     public function setUp()
     {
         parent::setUp();
@@ -32,7 +34,10 @@ class SubdomainMiddlewareTest extends IntegrationTestCase
         $this->SubdomainMiddleware = new SubdomainMiddleware();
         $this->useHttpServer(true);
     }
-
+    
+    /**
+     * @return void
+     */
     public function tearDown()
     {
         parent::tearDown();
@@ -40,12 +45,18 @@ class SubdomainMiddlewareTest extends IntegrationTestCase
         unset($this->SubdomainMiddleware);
     }
 
+    /**
+     * @return void
+     */
     public function testGetSubdomains()
     {
         $subdomains = $this->SubdomainMiddleware->getSubdomains();
         $this->assertEquals($subdomains, ['admin']);
     }
 
+    /**
+     * @return void
+     */
     public function testGetPrefixAndHost()
     {
         $array = $this->SubdomainMiddleware->getPrefixAndHost('admin.example.com');
@@ -58,11 +69,15 @@ class SubdomainMiddlewareTest extends IntegrationTestCase
         $this->assertEquals($array, [false, 'example.com']);
     }
 
-    /*  public function testInvoke() {
-     *      $this->configRequest(['uri' => ['_host' => 'admin.example.com']]);
-     *      $request = $this->getMockBuilder('Psr\Http\Message\ServerRequestInterface')->getMock();
-     *      $response = $this->getMockBuilder('Psr\Http\Message\ResponseInterface')->getMock();
-     *      $this->SubdomainMiddleware->__invoke($request, $resposne, $name);
-     *  }
+    /**
+     * @return void
      */
+    public function testInvoke() {
+        $this->markTestIncomplete('Not implemented yet.');
+        /*$this->configRequest(['uri' => ['_host' => 'admin.example.com']]);
+        $request = $this->getMockBuilder('Psr\Http\Message\ServerRequestInterface')->getMock();
+        $response = $this->getMockBuilder('Psr\Http\Message\ResponseInterface')->getMock();
+        $this->SubdomainMiddleware->__invoke($request, $resposne, $name);*/
+    }
+   
 }

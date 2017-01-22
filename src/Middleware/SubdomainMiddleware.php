@@ -47,6 +47,9 @@ class SubdomainMiddleware
         return $next($request, $response);
     }
 
+    /**
+     * @return array
+     */
     public function getSubdomains()
     {
 
@@ -65,6 +68,10 @@ class SubdomainMiddleware
         return $subdomains;
     }
 
+    /**
+     * @param string $host
+     * @return array
+     */
     public function getPrefixAndHost($host)
     {
 

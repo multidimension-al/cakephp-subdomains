@@ -15,58 +15,61 @@
 
 namespace Multidimensional\Subdomains\Tests\TestCase\Routing\Route;
 
-use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
-use Multidimensional\Subdomains\Routing\Route\SubdomainRoute;
-
-use Cake\Routing\Router;
+use Cake\Core\Configure;
 use Cake\Network\Request;
 use Cake\Routing\Route\Route;
+use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
-use Cake\Core\Configure;
+use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
+use Multidimensional\Subdomains\Routing\Route\SubdomainRoute;
 
 class SubdomainRouteTest extends TestCase
 {
 
     private $SubdomainRoute;
-
+    
+    /**
+     * @return void
+     */
     public function setUp()
     {
         parent::setUp();
         Configure::write('Multidimensional/Subdomains.Subdomains', ['admin']);
         $this->SubdomainRoute = new SubdomainRoute();
     }
-
+    
+    /**
+     * @return void
+     */
     public function tearDown()
     {
         unset($this->SubdomainRoute);
     }
 
     /**
-    * @return void
-    */
-    /* public function testParse() {
-     *
-     *   $url = ['prefix' => 'admin', 'Controller' => 'pages', 'action' => 'index'];
-     *   $response = $this->SubdomainRoute->parse($url, '');
-     *   //assertSame
-     *   $url = ['prefix' => 'users', 'Controller' => 'pages', 'action' => 'index'];
-     *   $response = $this->SubdomainRoute->parse($url, '');
-     *   //assertwrong
-     *
-     * }
+     * @return void
      */
+    public function testParse() {
+        $this->markTestIncomplete('Not implemented yet.');
+        /*$url = ['prefix' => 'admin', 'Controller' => 'pages', 'action' => 'index'];
+        $response = $this->SubdomainRoute->parse($url, '');
+        //assertSame
+        $url = ['prefix' => 'users', 'Controller' => 'pages', 'action' => 'index'];
+        $response = $this->SubdomainRoute->parse($url, '');
+        //assertwrong*/
+     }
+    
     /**
-    * @return void
-    */
-    /* public function testMatch() {
-     *
-     *   $url = ['prefix' => 'admin', 'Controller' => 'pages', 'action' => 'index'];
-     *  $response = $this->SubdomainRoute->match($url, '');
-     *   //assertSame
-     *   $url = ['prefix' => 'users', 'Controller' => 'pages', 'action' => 'index'];
-     *   $response = $this->SubdomainRoute->match($url, '');
-     *   //assertwrong
-     *
-     * }
+     * @return void
      */
+    public function testMatch() {
+        $this->markTestIncomplete('Not implemented yet.');
+        /*$url = ['prefix' => 'admin', 'Controller' => 'pages', 'action' => 'index'];
+        $response = $this->SubdomainRoute->match($url, '');
+        //assertSame
+        $url = ['prefix' => 'users', 'Controller' => 'pages', 'action' => 'index'];
+        $response = $this->SubdomainRoute->match($url, '');
+        //assertwrong*/
+    }
+    
 }

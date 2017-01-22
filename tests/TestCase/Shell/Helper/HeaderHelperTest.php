@@ -15,20 +15,25 @@
 
 namespace Multidimensional\Subdomains\Tests\TestCase\Shell\Helper;
 
-use Multidimensional\Subdomains\Shell\Helper\HeaderHelper;
-
 use Cake\TestSuite\TestCase;
+use Multidimensional\Subdomains\Shell\Helper\HeaderHelper;
 
 class HeaderHelperTest extends TestCase
 {
 
+    /**
+     * @return void
+     */
     public function setUp()
     {
         parent::setUp();
     }
-
-    /* public function testOutput() {
-     *
-     * }
+    
+    /**
+     * @return void
      */
+    public function testOutput() {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+    
 }
