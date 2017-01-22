@@ -1,7 +1,6 @@
 filter:
     paths: 
         - 'src/*'
-    excluded_paths:
         - 'tests/*'
 checks:
     php:
@@ -114,12 +113,12 @@ coding_style:
                 after_comma: true
                 before_semicolon: false
                 after_semicolon: true
-                after_type_cast: true
+                after_type_cast: false
         braces:
             classes_functions:
-                class: end-of-line
-                function: end-of-line
-                closure: end-of-line
+                class: new-line
+                function: new-line
+                closure: new-line
             if:
                 opening: end-of-line
                 always: true
@@ -152,12 +151,11 @@ tools:
     php_code_coverage: false
     php_code_sniffer:
         config:
-            standard: PSR2
+            standard: PSR4
         filter:
-            paths: ['src']
+            paths: ['src', 'tests']
     php_loc:
         enabled: true
-        excluded_dirs: [tests]
+        excluded_dirs: ['tests']
     php_cpd:
         enabled: true
-        excluded_dirs: [tests]

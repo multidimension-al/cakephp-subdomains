@@ -8,9 +8,9 @@
  * For full copyright and license information, please see the LICENSE file
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     (c) Multidimension.al (http://multidimension.al)
- * @link          https://github.com/multidimension-al/cakephp-subdomains Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright (c) Multidimension.al (http://multidimension.al)
+ * @link      https://github.com/multidimension-al/cakephp-subdomains Github
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Subdomains\Tests\TestCase\Routing\Route;
@@ -24,18 +24,21 @@ use Cake\Routing\Route\Route;
 use Cake\TestSuite\TestCase;
 use Cake\Core\Configure;
 
-class SubdomainRouteTest extends TestCase {
-    
+class SubdomainRouteTest extends TestCase
+{
+
     private $SubdomainRoute;
-  
-    public function setUp() {
+
+    public function setUp()
+    {
         parent::setUp();
         Configure::write('Multidimensional/Subdomains.Subdomains', ['admin']);
         $this->SubdomainRoute = new SubdomainRoute();
     }
-    
-    public function tearDown() {
-        unset($this->SubdomainRoute);   
+
+    public function tearDown()
+    {
+        unset($this->SubdomainRoute);
     }
 
     /**
@@ -65,5 +68,5 @@ class SubdomainRouteTest extends TestCase {
      *   //assertwrong
      *
      * }
-     */ 
+     */
 }

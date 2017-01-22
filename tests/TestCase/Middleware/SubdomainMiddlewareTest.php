@@ -8,9 +8,9 @@
  * For full copyright and license information, please see the LICENSE file
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     (c) Multidimension.al (http://multidimension.al)
- * @link          https://github.com/multidimension-al/cakephp-subdomains Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright (c) Multidimension.al (http://multidimension.al)
+ * @link      https://github.com/multidimension-al/cakephp-subdomains Github
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Subdomains\Tests\TestCase\Middleware;
@@ -20,29 +20,34 @@ use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Core\Configure;
 
-class SubdomainMiddlewareTest extends IntegrationTestCase {
-  
+class SubdomainMiddlewareTest extends IntegrationTestCase
+{
+
     private $subdomainMiddleware;
 
-    public function setUp() {
+    public function setUp()
+    {
         parent::setUp();
         Configure::write('Multidimensional/Subdomains.Subdomains', ['admin']);
         $this->SubdomainMiddleware = new SubdomainMiddleware();
         $this->useHttpServer(true);
     }
 
-    public function tearDown() {
+    public function tearDown()
+    {
         parent::tearDown();
         Configure::delete('Multidimensional/Subdomains.Subdomains');
         unset($this->SubdomainMiddleware);
     }
 
-    public function testGetSubdomains() {
+    public function testGetSubdomains()
+    {
         $subdomains = $this->SubdomainMiddleware->getSubdomains();
         $this->assertEquals($subdomains, ['admin']);
     }
 
-    public function testGetPrefixAndHost() {
+    public function testGetPrefixAndHost()
+    {
         $array = $this->SubdomainMiddleware->getPrefixAndHost('admin.example.com');
         $this->assertEquals($array, ['admin', 'example.com']);
         unset($array);
@@ -60,5 +65,4 @@ class SubdomainMiddlewareTest extends IntegrationTestCase {
      *      $this->SubdomainMiddleware->__invoke($request, $resposne, $name);
      *  }
      */
-
 }

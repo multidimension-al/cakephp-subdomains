@@ -8,21 +8,23 @@
  * For full copyright and license information, please see the LICENSE file
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     (c) Multidimension.al (http://multidimension.al)
- * @link          https://github.com/multidimension-al/cakephp-subdomains Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright (c) Multidimension.al (http://multidimension.al)
+ * @link      https://github.com/multidimension-al/cakephp-subdomains Github
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Subdomains\Shell\Helper;
 
 use Cake\Console\Helper;
 
-class HeaderHelper extends Helper {
-    
+class HeaderHelper extends Helper
+{
+
     /*
     * @return void
     */
-    public function output($args = null) {
+    public function output($args = null)
+    {
         $this->_io->out("\n\n");
         $this->_io->styles('header', ['text' => 'green']);
 
@@ -35,5 +37,4 @@ class HeaderHelper extends Helper {
         $this->_io->out('<header>              by https://multidimension.al             </header>');
         $this->_io->out("\n\n");
     }
-    
 }

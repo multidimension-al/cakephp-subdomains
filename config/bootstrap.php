@@ -8,11 +8,11 @@
  * For full copyright and license information, please see the LICENSE file
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     (c) Multidimension.al (http://multidimension.al)
- * @link          https://github.com/multidimension-al/cakephp-subdomains Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright (c) Multidimension.al (http://multidimension.al)
+ * @link      https://github.com/multidimension-al/cakephp-subdomains Github
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
- 
+
 namespace Multidimensional\Subdomains\Config;
 
 use Cake\Core\Configure;
@@ -26,8 +26,8 @@ use Multidimensional\Subdomains\Middleware\SubdomainMiddleware;
  *  UPDATES! ONLY EDIT THE CONFIG/SUBDOMAINS.PHP FILE IN THE MAIN CONFIG
  *
  */
- 
-$subdomainConfig = array('Subdomains' => NULL);
+
+$subdomainConfig = ['Subdomains' => null];
 
 if (file_exists(CONFIG . 'subdomains.php')) {
     Configure::load('subdomains');
@@ -38,10 +38,10 @@ if (file_exists(CONFIG . 'subdomains.php')) {
 /*
  *  Middleware
  */
- 
+
 EventManager::instance()->on(
     'Server.buildMiddleware',
-    function($event, $middleware) {
+    function ($event, $middleware) {
         $middleware->add(new SubdomainMiddleware());
     }
 );
