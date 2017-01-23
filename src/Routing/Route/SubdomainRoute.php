@@ -76,7 +76,9 @@ class SubdomainRoute extends Route
             $host = $context['_host'];
         }
 
+        $subdomainMiddleware = new SubdomainMiddleware();
 
+        return $subdomainMiddleware->getPrefixAndHost($host);
     }
 
     /**
