@@ -150,9 +150,10 @@ class SubdomainsInstallShell extends Shell
      */
     private function _getSubdomains()
     {
-        $subdomainObject = new SubdomainMiddleware();
-
-        return $subdomainObject->getSubdomains();
+        $subdomainMiddleware = new SubdomainMiddleware();
+        $subdomains = $subdomainMiddleware->getSubdomains();
+        $defaultSubdomains = $subdomainMiddleware->defaultSubdomains;
+        return array_diff($subdomains, $defaultSubdomains);
     }
 
     /**

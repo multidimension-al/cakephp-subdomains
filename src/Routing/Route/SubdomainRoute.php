@@ -47,7 +47,7 @@ class SubdomainRoute extends Route
     public function match(array $url, array $context = [])
     {
         if (!isset($url['prefix'])) {
-            $url['prefix'] = false;
+            $url['prefix'] = null;
         }
 
         if (!$this->_checkPrefix($url['prefix'])) {
@@ -57,7 +57,7 @@ class SubdomainRoute extends Route
         list($prefix, $host) = $this->_getPrefixAndHost($context);
 
         if ($prefix !== $url['prefix']) {
-            $url['_host'] = $url['prefix'] === false ? $host : $url['prefix'] . '.' . $host;
+            $url['_host'] = $url['prefix'] === 'false' ? $host : $url['prefix'] . '.' . $host;
         }
 
         return parent::match($url, $context);
@@ -76,9 +76,7 @@ class SubdomainRoute extends Route
             $host = $context['_host'];
         }
 
-        $subdomainObject = new SubdomainMiddleware();
 
-        return $subdomainObject->getPrefixAndHost($host);
     }
 
     /**
@@ -87,7 +85,7 @@ class SubdomainRoute extends Route
      */
     private function _checkPrefix($prefix)
     {
-        $routePrefix = isset($this->defaults['prefix']) ? $this->defaults['prefix'] : false;
+        $routePrefix = isset($this->defaults['prefix']) ? $this->defaults['prefix'] : null;
 
         return $prefix === $routePrefix;
     }

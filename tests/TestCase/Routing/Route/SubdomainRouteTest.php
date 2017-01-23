@@ -26,7 +26,7 @@ use Multidimensional\Subdomains\Routing\Route\SubdomainRoute;
 class SubdomainRouteTest extends TestCase
 {
 
-    private $SubdomainRoute;
+    private $subdomainRoute;
 
     /**
      * @return void
@@ -35,7 +35,7 @@ class SubdomainRouteTest extends TestCase
     {
         parent::setUp();
         Configure::write('Multidimensional/Subdomains.Subdomains', ['admin']);
-        $this->SubdomainRoute = new SubdomainRoute();
+        $this->subdomainRoute = new SubdomainRoute();
     }
 
     /**
@@ -43,7 +43,7 @@ class SubdomainRouteTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->SubdomainRoute);
+        unset($this->subdomainRoute);
     }
 
     /**
@@ -53,10 +53,10 @@ class SubdomainRouteTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
         /*$url = ['prefix' => 'admin', 'Controller' => 'pages', 'action' => 'index'];
-        $response = $this->SubdomainRoute->parse($url, '');
+        $response = $this->subdomainRoute->parse($url, '');
         //assertSame
         $url = ['prefix' => 'users', 'Controller' => 'pages', 'action' => 'index'];
-        $response = $this->SubdomainRoute->parse($url, '');
+        $response = $this->subdomainRoute->parse($url, '');
         //assertwrong*/
     }
 
@@ -67,10 +67,10 @@ class SubdomainRouteTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
         /*$url = ['prefix' => 'admin', 'Controller' => 'pages', 'action' => 'index'];
-        $response = $this->SubdomainRoute->match($url, '');
+        $response = $this->subdomainRoute->match($url, '');
         //assertSame
         $url = ['prefix' => 'users', 'Controller' => 'pages', 'action' => 'index'];
-        $response = $this->SubdomainRoute->match($url, '');
+        $response = $this->subdomainRoute->match($url, '');
         //assertwrong*/
     }
 }

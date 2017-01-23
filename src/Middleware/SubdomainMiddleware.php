@@ -20,6 +20,8 @@ use Cake\Core\Configure;
 class SubdomainMiddleware
 {
 
+    public $defaultSubdomains = ['www', 'false'];
+
     /**
      * @param \Psr\Http\Message\ServerRequestInterface $request  The request.
      * @param \Psr\Http\Message\ResponseInterface      $response The response.
@@ -54,16 +56,16 @@ class SubdomainMiddleware
         $validConfiguration = Configure::check('Multidimensional/Subdomains.Subdomains');
 
         if (!$validConfiguration) {
-            return [];
+            return $this->defaultSubdomains;
         }
 
         $subdomains = Configure::read('Multidimensional/Subdomains.Subdomains');
 
         if (!is_array($subdomains) || count($subdomains) == 0) {
-            return [];
+            return $this->defaultSubdomains;
         }
 
-        return $subdomains;
+        return array_merge($this->defaultSubdomains, $subdomains);
     }
 
     /**
