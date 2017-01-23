@@ -20,7 +20,6 @@ use Multidimensional\Subdomains\Shell\Helper\HeaderHelper;
 
 class HeaderHelperTest extends TestCase
 {
-
     /**
      * @return void
      */
@@ -28,14 +27,13 @@ class HeaderHelperTest extends TestCase
     {
         parent::setUp();
     }
-	
-	/**
+
+    /**
      * @return void
      */
     public function tearDown()
     {
         parent::tearDown();
-
     }
 
     /**

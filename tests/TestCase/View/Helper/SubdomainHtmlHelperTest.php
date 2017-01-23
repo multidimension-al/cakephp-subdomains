@@ -31,8 +31,8 @@ class SubdomainHtmlHelperTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $View = new View();
-        $this->helper = new SubdomainHtmlHelper($View);
+        $view = new View();
+        $this->helper = new SubdomainHtmlHelper($view);
     }
     
     /**

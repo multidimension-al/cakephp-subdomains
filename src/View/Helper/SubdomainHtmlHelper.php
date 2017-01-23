@@ -20,6 +20,13 @@ use Cake\View\Helper\HtmlHelper;
 class SubdomainHtmlHelper extends HtmlHelper
 {
 
+    /**
+     * @param string $title The content to be wrapped by `<a>` tags.
+     * @param string|array|null $url Cake-relative URL or array of URL parameters, or
+     *   external URL (starts with http://)
+     * @param array $options Array of options and HTML attributes.
+     * @return string An `<a />` element.
+     */
     public function link($title, $url = null, array $options = [])
     {
         if (isset($url['prefix']) && $url['prefix'] === false) {
