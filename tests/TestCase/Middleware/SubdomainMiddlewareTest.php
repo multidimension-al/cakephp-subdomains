@@ -54,7 +54,7 @@ class SubdomainMiddlewareTest extends IntegrationTestCase
     public function testGetSubdomains()
     {
         $subdomains = $this->subdomainMiddleware->getSubdomains();
-        $this->assertEquals($subdomains, array_merge($this->defaultSubdomains, ['admin']);
+        $this->assertEquals($subdomains, array_merge($this->defaultSubdomains, ['admin']));
     }
 
     /**
