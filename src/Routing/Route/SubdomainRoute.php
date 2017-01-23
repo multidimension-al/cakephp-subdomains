@@ -65,7 +65,7 @@ class SubdomainRoute extends Route
 
     /**
      * @param array $context
-     * @return SubdomainMiddleware
+     * @return array
      */
     private function _getPrefixAndHost(array $context = [])
     {
@@ -75,7 +75,6 @@ class SubdomainRoute extends Route
         } else {
             $host = $context['_host'];
         }
-
         $subdomainMiddleware = new SubdomainMiddleware();
 
         return $subdomainMiddleware->getPrefixAndHost($host);

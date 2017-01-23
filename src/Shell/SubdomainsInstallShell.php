@@ -153,6 +153,7 @@ class SubdomainsInstallShell extends Shell
         $subdomainMiddleware = new SubdomainMiddleware();
         $subdomains = $subdomainMiddleware->getSubdomains();
         $defaultSubdomains = $subdomainMiddleware->defaultSubdomains;
+		
         return array_diff($subdomains, $defaultSubdomains);
     }
 

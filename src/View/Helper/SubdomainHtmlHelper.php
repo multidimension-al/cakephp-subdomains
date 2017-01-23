@@ -28,8 +28,7 @@ class SubdomainHtmlHelper extends HtmlHelper
         if (is_array($title) && isset($title['prefix']) && $title['prefix'] === false) {
             $title['prefix'] = "false";
         }
-        
+
         return parent::link($title, $url, $options);
     }
-
 }
