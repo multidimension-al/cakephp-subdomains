@@ -28,6 +28,15 @@ class HeaderHelperTest extends TestCase
     {
         parent::setUp();
     }
+	
+	/**
+     * @return void
+     */
+    public function tearDown()
+    {
+        parent::tearDown();
+
+    }
 
     /**
      * @return void

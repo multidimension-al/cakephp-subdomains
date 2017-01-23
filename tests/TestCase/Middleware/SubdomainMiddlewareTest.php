@@ -23,7 +23,7 @@ class SubdomainMiddlewareTest extends IntegrationTestCase
 {
 
     private $subdomainMiddleware;
-	private $defaultSubdomains;
+    private $defaultSubdomains;
 
     /**
      * @return void
@@ -33,7 +33,7 @@ class SubdomainMiddlewareTest extends IntegrationTestCase
         parent::setUp();
         Configure::write('Multidimensional/Subdomains.Subdomains', ['admin']);
         $this->subdomainMiddleware = new SubdomainMiddleware();
-		$this->defaultSubdomains = $this->subdomainMiddleware->defaultSubdomains;
+        $this->defaultSubdomains = $this->subdomainMiddleware->defaultSubdomains;
         $this->useHttpServer(true);
     }
 
@@ -45,7 +45,7 @@ class SubdomainMiddlewareTest extends IntegrationTestCase
         parent::tearDown();
         Configure::delete('Multidimensional/Subdomains.Subdomains');
         unset($this->subdomainMiddleware);
-		unset($this->defaultSubdomains);
+        unset($this->defaultSubdomains);
     }
 
     /**
@@ -54,6 +54,8 @@ class SubdomainMiddlewareTest extends IntegrationTestCase
     public function testGetSubdomains()
     {
         $subdomains = $this->subdomainMiddleware->getSubdomains();
+        $this->assertNotEmpty($subdomains);
+        $this->assertNotEmpty($this->defaultSubdomains);
         $this->assertEquals($subdomains, array_merge($this->defaultSubdomains, ['admin']));
     }
 
@@ -68,7 +70,7 @@ class SubdomainMiddlewareTest extends IntegrationTestCase
         $this->assertEquals($array, [false, 'example.com']);
         $array = $this->subdomainMiddleware->getPrefixAndHost('example.com');
         $this->assertEquals($array, [false, 'example.com']);
-		$array = $this->subdomainMiddleware->getPrefixAndHost('www.example.com');
+        $array = $this->subdomainMiddleware->getPrefixAndHost('www.example.com');
         $this->assertEquals($array, ['www', 'example.com']);
         $array = $this->subdomainMiddleware->getPrefixAndHost('false.example.com');
         $this->assertEquals($array, ['false', 'example.com']);
