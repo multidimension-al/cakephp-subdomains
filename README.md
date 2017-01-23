@@ -40,6 +40,22 @@ Or by manually adding following line to your app's `config/bootstrap.php`:
 Plugin::load('Multidimensional/Subdomains', ['bootstrap' => true, 'routes' => true]);
 ```
 
+In order to get the most out of the HTML link generator in CakePHP, we recommend installing our custom Subdomain HTML helper into your master __AppView.php__.
+
+```php
+// src/View/AppView.php
+class AppView extends View
+{
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadHelper('Html', [
+            'className' => 'Multidimensional/Subdomains.SubdomainHtml'
+        ]);
+    }
+}
+```
+
 ## Configuration
 
 Run the installation script command in termainl:
@@ -53,12 +69,12 @@ This command will allow you to automatically create a configuration file with th
 Alternatively, you can create a `config/subdomains.php` file in your main CakePHP config folder:
 
 ```php
-return array(
+return [
     'Multidimensional/Subdomains' => 
-        array('Subdomains' =>
-			array('{SUBDOMAIN_1}', '{SUBDOMAIN_2}', /*...*/ '{SUBDOMAIN_N}')
-		)
-	);
+        ['Subdomains' =>
+            ['{SUBDOMAIN_1}', '{SUBDOMAIN_2}', /*...*/ '{SUBDOMAIN_N}']
+        ]
+    ];
 ```
 
 ## Usage
@@ -68,12 +84,21 @@ The plugin will automatically add the subdomains you specify as CakePHP prefixes
 When generating links, include the subdomain prefix you want to use and the Router will automatically create the link using the subdomain URL.
 
 ```php
-//Link to http://example.com/articles/
-$this->Html->link(['prefix'=>false, 'controller'=>'Articles', 'action'=>'index']);
-
 //Link to http://admin.example.com/articles/
 $this->Html->link(['prefix'=>'admin', 'controller'=>'Articles', 'action'=>'index']);
 ```
+
+Advanced options when the custom HTML helper is installed.
+
+```php
+//Link to http://example.com/articles/
+$this->Html->link(['prefix'=>false, 'controller'=>'Articles', 'action'=>'index']);
+
+//Link to http://www.example.com/articles/
+$this->Html->link(['prefix'=>'www', 'controller'=>'Articles', 'action'=>'index']);
+```
+
+Note: The www prefix should be used sparingly. If you require the www to be prepended to your domain, we would recommend installing a middleware plugin that forces the www to be added to the domain. In any case, setting __'prefix' = false__ is the best practice.
 
 ## Contributing
 
@@ -84,14 +109,13 @@ We need help writing unit tests, implementing Travis-CI and generally improving 
 ## To Do
 
 * Travis CI and PHPUnit Testing
-* [Fix Issue #15](https://github.com/multidimension-al/cakephp-subdomains/issues/15)
 
 ## License
 
     The MIT License (MIT)
 
     Copyright (c) 2016 multidimension.al
-	
+    
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
