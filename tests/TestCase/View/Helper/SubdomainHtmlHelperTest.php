@@ -34,7 +34,7 @@ class SubdomainHtmlHelperTest extends TestCase
         $view = new View();
         $this->helper = new SubdomainHtmlHelper($view);
     }
-    
+
     /**
      * @return void
      */
@@ -44,39 +44,39 @@ class SubdomainHtmlHelperTest extends TestCase
         unset($this->View);
         unset($this->helper);
     }
-    
+
     /**
      * @return void
      */
     public function testLink()
     {
         /*Router::connect('/:controller/:action/*');
-        
+
         $result = $this->helper->link('/home');
         $expected = ['a' => ['href' => '/home'], 'preg:/\/home/', '/a'];
         $this->assertHtml($expected, $result);
-        
+
         $result = $this->helper->link('http://www.example.org?param1=value1&param2=value2');
         $expected = ['a' => ['href' => 'http://www.example.org?param1=value1&amp;param2=value2'], 'http://www.example.org?param1=value1&amp;param2=value2', '/a'];
         $this->assertHtml($expected, $result);
-        
+
         $result = $this->helper->link('Google.com', 'http://www.google.com');
         $expected = ['a' => ['href' => 'http://www.google.com'], 'Google.com', '/a'];
         $this->assertHtml($expected, $result);
-        
+
         $result = $this->helper->link('http://admin.example.com');
         $expected = ['a' => ['href' => 'http://admin.example.com'], 'http://admin.example.com', '/a'];
         $this->assertHtml($expected, $result);
-        
+
         Router::scope('/', ['prefix' => 'admin'],
             function ($routes) {
                 $routes->fallbacks();
             }
         );
-        
+
         $result = $this->helper->link('Admin Panel', ['prefix' => 'admin', 'controller' => 'test', 'action' => 'index']);
         $expected = ['a' => ['href' => 'http://admin.example.com'], 'http://admin.example.com', '/a'];*/
-        
+
         $this->markTestIncomplete('Not implemented yet.');
     }
 }

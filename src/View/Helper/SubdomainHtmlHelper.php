@@ -21,10 +21,10 @@ class SubdomainHtmlHelper extends HtmlHelper
 {
 
     /**
-     * @param string $title The content to be wrapped by `<a>` tags.
-     * @param string|array|null $url Cake-relative URL or array of URL parameters, or
+     * @param string            $title   The content to be wrapped by `<a>` tags.
+     * @param string|array|null $url     Cake-relative URL or array of URL parameters, or external URL (starts with http://)
      *   external URL (starts with http://)
-     * @param array $options Array of options and HTML attributes.
+     * @param array             $options Array of options and HTML attributes.
      * @return string An `<a />` element.
      */
     public function link($title, $url = null, array $options = [])
