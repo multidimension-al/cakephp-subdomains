@@ -1,14 +1,20 @@
-# Dreamweaver
+# PHPUnit
+/phpunit.xml
 
+# Composer
+vendor/
+/composer.lock
+
+# PHPStorm
+.idea/
+
+# Dreamweaver
 _notes/
 
 # Netbeans
-
 nbproject/*
 
 # CakePHP 3
-
-/vendor/*
 /config/app.php
 
 /tmp/cache/models/*
