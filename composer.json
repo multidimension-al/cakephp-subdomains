@@ -12,10 +12,11 @@
     }],
     "require": {
         "php": ">=5.5.9",
-        "cakephp/cakephp": "~3.3"
+        "cakephp/cakephp": "^3.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "^5.6|^6.0",
+        "cakephp/cakephp-codesniffer": "*"
     },
     "autoload": {
         "psr-4": {

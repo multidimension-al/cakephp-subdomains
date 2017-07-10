@@ -11,6 +11,8 @@ env:
     - DEFAULT=1
   matrix:
     - CAKE_VERSION='3.3.*'
+    - CAKE_VERSION='3.4.*'
+    - CAKE_VERSION='dev-3.next'
 
 matrix:
   fast_finish: true
@@ -24,8 +26,8 @@ matrix:
       env: PHPCS=1 DEFAULT=0
 
 before_install:
-  - if [[ $DEFAULT = 1 ]] ; then travis_retry composer require phpunit/phpunit --no-interaction ; fi
-  - if [[ $PHPCS = 1 ]] ; then travis_retry composer require "cakephp/cakephp-codesniffer=2.*" --no-interaction ; fi
+  - if [[ $DEFAULT = 1 && $CAKE_VERSION != '3.3.*' && $TRAVIS_PHP_VERSION != 5.6 ]] ; then travis_retry composer require phpunit/phpunit:^6.0 --no-interaction --prefer-stable ; else travis_retry composer require phpunit/phpunit:^5.6 --no-interaction --prefer-stable ; fi
+  - if [[ $PHPCS = 1 ]] ; then travis_retry composer require "cakephp/cakephp-codesniffer:*" --no-interaction ; fi
   - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --config-set installed_paths /home/travis/build/multidimension-al/cakephp-subdomains/vendor/cakephp/cakephp-codesniffer ; fi
 
 before_script:
