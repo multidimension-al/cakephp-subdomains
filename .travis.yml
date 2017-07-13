@@ -33,20 +33,32 @@ matrix:
 
 
 before_install:
+  - printenv || true
+  - cd ../../
+  - travis_retry composer create-project cakephp/app=$CAKE_VERSION test --no-interaction -s dev
+  - cd test && cd vendor && mkdir multidimensional && cd multidimensional
+  - mkdir cakephp-subdomains && cd ../../../
+  - mv multidimension-al/cakephp-subdomains test/vendor/multidimensional
+  - cd test && bin/cake || true
+  - travis_retry composer require "multidimensional/cakephp-subdomains:dev-$TRAVIS_BRANCH#$TRAVIS_COMMIT" --no-interaction
   - if [[ $DEFAULT = 1 && $CAKE_VERSION != '3.3.*' && $TRAVIS_PHP_VERSION != 5.6 && $TRAVIS_PHP_VERSION != 5.5 ]] ; then travis_retry composer require phpunit/phpunit:^6.0 --no-interaction --prefer-stable ; else travis_retry composer require phpunit/phpunit --no-interaction --prefer-stable ; fi
   - if [[ $PHPCS = 1 ]] ; then travis_retry composer require "cakephp/cakephp-codesniffer:*" --no-interaction ; fi
   - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --config-set installed_paths /home/travis/build/multidimension-al/cakephp-subdomains/vendor/cakephp/cakephp-codesniffer ; fi
+  - mv -f ./vendor/multidimensional/cakephp-subdomains/tests/phpunit.xml.dist ./
 
 before_script:
-  - travis_retry composer install --prefer-source --no-interaction
+  - travis_retry composer dump-autoload --no-interaction
+  - travis_retry composer update --no-interaction
 
 script:
-  - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --standard=CakePHP ./src ; fi
-  - if [[ $DEFAULT = 1 ]] ; then ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover ; fi
+  - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --standard=CakePHP ./vendor/multidimensional/cakephp-subdomains/ ; fi
+  - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 && $TRAVIS_PHP_VERSION != 'hhvm' ]] ; then ./vendor/bin/phpunit --coverage-text --coverage-clover=vendor/multidimensional/cakephp-subdomains/coverage.clover ; fi
+  - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 5.6 ]] ; then ./vendor/bin/phpunit ; fi
 
 after_script:
-  - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 ]] ; then wget https://scrutinizer-ci.com/ocular.phar ; fi
-  - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 ]] ; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover ; fi
+  - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 && $CAKE_VERSION != 'dev-3.next' ]] ; then cd vendor/multidimensional/cakephp-subdomains/ ; fi
+  - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 && $CAKE_VERSION != 'dev-3.next' ]] ; then wget https://scrutinizer-ci.com/ocular.phar ; fi
+  - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 'hhvm' && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 && $CAKE_VERSION != 'dev-3.next' ]] ; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover ; fi
 
 notifications:
   email: false
