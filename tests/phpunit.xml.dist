@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~      __  ___      ____  _     ___                           _                    __
+  ~     /  |/  /_  __/ / /_(_)___/ (_)___ ___  ___  ____  _____(_)___  ____   ____ _/ /
+  ~    / /|_/ / / / / / __/ / __  / / __ `__ \/ _ \/ __ \/ ___/ / __ \/ __ \ / __ `/ /
+  ~   / /  / / /_/ / / /_/ / /_/ / / / / / / /  __/ / / (__  ) / /_/ / / / // /_/ / /
+  ~  /_/  /_/\__,_/_/\__/_/\__,_/_/_/ /_/ /_/\___/_/ /_/____/_/\____/_/ /_(_)__,_/_/
+  ~
+  ~ CakePHP Plugin : CakePHP Subdomain Routing
+  ~ Copyright (c) Multidimension.al (http://multidimension.al)
+  ~ Github : https://github.com/multidimension-al/cakephp-subdomains
+  ~
+  ~ Licensed under The MIT License
+  ~ For full copyright and license information, please see the LICENSE file
+  ~ Redistributions of files must retain the above copyright notice.
+  ~
+  ~ @copyright  Copyright © 2016-2017 Multidimension.al (http://multidimension.al)
+  ~ @link       https://github.com/multidimension-al/cakephp-subdomains Github
+  ~ @license    http://www.opensource.org/licenses/mit-license.php MIT License
+  -->
+
+<phpunit
+        colors="true"
+        processIsolation="false"
+        stopOnFailure="false"
+        syntaxCheck="false"
+        bootstrap="./vendor/multidimensional/cakephp-subdomains/tests/bootstrap.php"
+>
+    <php>
+        <ini name="memory_limit" value="-1"/>
+        <ini name="apc.enable_cli" value="1"/>
+    </php>
+
+    <!-- Add any additional test suites you want to run here -->
+    <testsuites>
+        <!-- Add plugin test suites here. -->
+        <testsuite name="Cakephpify Tests">
+            <directory>./vendor/multidimensional/cakephp-subdomains/tests/TestCase</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- Add a filter to make sure we don't count vendors and Tests in the coverage report -->
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./vendor/multidimensional/cakephp-subdomains/src/</directory>
+        </whitelist>
+    </filter>
+</phpunit>
